@@ -1,6 +1,6 @@
 // todo: span, break, splitAt, scan*, zip3*, unzip*, (!!)
-(function() {
-    'use strict';
+(function () {
+    "use strict";
 
     //    head, last :: [a] -> a
     const head = xs => xs [0];
@@ -14,7 +14,7 @@
     const map = f => xs => {
         const xsLength = xs.length;
         let i = 0, mapped = new Array (xsLength);
-        for(; i < xsLength; i++) {
+        for (; i < xsLength; i++) {
             mapped [i] = f (xs [i]);
         }
         return mapped;
@@ -24,10 +24,10 @@
     const filter = p => xs => {
         const xsLength = xs.length;
         let i = 0, filtered = [];
-        for(; i < xsLength; i++) {
-            const element = xs [i];
-            if(p (element)) {
-                filtered.push (element);
+        for (; i < xsLength; i++) {
+            const item = xs [i];
+            if (p (item)) {
+                filtered.push (item);
             }
         }
         return filtered;
@@ -37,14 +37,14 @@
     const foldl = f => init => xs => {
         const xsLength = xs.length;
         let i = 0, acc = init;
-        for(; i < xsLength; i++) {
+        for (; i < xsLength; i++) {
             acc = f (acc) (xs [i]);
         }
         return acc;
     };
     const foldr = f => init => xs => {
         let i = xs.length - 1, acc = init;
-        for(; i >= 0; i--) {
+        for (; i >= 0; i--) {
             acc = f (xs [i]) (acc);
         }
         return acc;
@@ -67,13 +67,12 @@
 
     //    compose :: (z -> y, y -> x, ... a -> b) -> a -> z
     //    https://hackernoon.com/javascript-functional-composition-for-every-day-use-22421ef65a10
-    const compose = (...fs) => x =>
-        foldr (apply) (x) (fs);
+    const compose = (...fs) => x => foldr (apply) (x) (fs);
 
     //    compn :: (z -> y) -> (y -> x) -> ... -> (a -> b) -> a -> z
     const compn = arg1 => {
         const compnWorker = fs => argNext => {
-            if(typeof argNext !== 'function') {
+            if (typeof argNext !== "function") {
                 return compose (...fs) (argNext);
             }
             fs.push (argNext);
@@ -120,20 +119,20 @@
     const takeWhile = p => xs => {
         const xsLength = xs.length;
         let i = 0, taken = [];
-        for(; i < xsLength; i++) {
-            const element = xs [i];
-            if(!p (element)) {
+        for (; i < xsLength; i++) {
+            const item = xs [i];
+            if (! p (item)) {
                 break;
             }
-            taken.push (element);
+            taken.push (item);
         }
         return taken;
     };
     const dropWhile = p => xs => {
         const xsLength = xs.length;
         let i = 0, n = 0;
-        for(; i < xsLength; i++) {
-            if(!p (xs [i])) {
+        for (; i < xsLength; i++) {
+            if (! p (xs [i])) {
                 break;
             }
             n++;
@@ -175,7 +174,7 @@
     const odd = n => Math.abs (n % 2) === 1;
 
     //    not :: Boolean -> Boolean
-    const not = b => !b;
+    const not = b => ! b;
 
     //    and, or :: a -> a -> Boolean
     const and = x => y => y && x;
@@ -214,7 +213,7 @@
     const zipWith = f => xs => ys => {
         const newLength = min (len (xs)) (len (ys));
         let i = 0, zipped = new Array (newLength);
-        for(; i < newLength; i++) {
+        for (; i < newLength; i++) {
             zipped [i] = f (xs [i]) (ys [i]);
         }
         return zipped;
@@ -232,7 +231,7 @@
     const range = n => k => {
         const newLength = k - n + 1;
         let i = 0, ranged = new Array (newLength);
-        for(; i < newLength; i++) {
+        for (; i < newLength; i++) {
             ranged [i] = i + n;
         }
         return ranged;
@@ -243,14 +242,14 @@
 
     //    showList :: [a] -> String
     const showList = lst => {
-        return '[' + show (head (lst)) + foldr (element => acc => ',' + show (element) + acc) ('') (tail (lst)) + ']';
+        return "[" + show (head (lst)) + foldr (item => acc => ", " + show (item) + acc) ("") (tail (lst)) + "]";
     };
 
     //    show :: a -> String
     const show = x => {
-        if(isList (x)) {
+        if (isList (x)) {
             return showList (x);
-        } if(typeof x === 'string') {
+        } if (typeof x === "string") {
             return JSON.stringify (x);
         } else {
             return x.toString ();
@@ -267,8 +266,8 @@
     const union = xs => ys => nub (join (xs) (ys));
 
     //    toUpper, toLower :: String -> String
-    const toUpper = str => str.toUpperCase();
-    const toLower = str => str.toLowerCase();
+    const toUpper = str => str.toUpperCase ();
+    const toLower = str => str.toLowerCase ();
 
     module.exports = {
         head, last, tail, init,
