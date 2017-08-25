@@ -198,21 +198,14 @@
     const any = p => comp (foldr (or) (false)) (map (p));
     const all = p => comp (foldr (and) (true)) (map (p));
 
-    const Pair = function (x, y) {
-        this.fst = x;
-        this.snd = y;
-    };
-    Pair.prototype.toString = function () {
-        return '(' + fst (this) + ',' + snd (this) + ')';
-    };
     //    pair :: a -> b -> (a, b)
-    const pair = x => y => new Pair (x, y);
+    const pair = x => y => [x, y];
 
     //    fst :: (a, b) -> a
-    const fst = pair => pair.fst;
+    const fst = tuple => tuple [0];
 
     //    snd :: (a, b) -> b
-    const snd = pair => pair.snd;
+    const snd = tuple => tuple [1];
 
     //    zip :: [a] -> [b] -> [(a, b)]
     const zip = xs => ys => zipWith (pair) (xs) (ys);
