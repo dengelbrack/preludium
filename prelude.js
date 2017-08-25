@@ -130,14 +130,13 @@
     };
     const dropWhile = p => xs => {
         const xsLength = xs.length;
-        let i = 0, n = 0;
+        let i = 0;
         for (; i < xsLength; i++) {
             if (! p (xs [i])) {
                 break;
             }
-            n++;
         }
-        return drop (n) (xs);
+        return drop (i) (xs);
     };
 
     //    plus, minus, times, divide, pow :: Number -> Number -> Number
