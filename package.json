@@ -1,0 +1,16 @@
+{
+  "name": "preludejs",
+  "version": "0.0.1",
+  "description": "Haskell Prelude (and more) for JavaScript",
+  "main": "prelude.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Haskell",
+    "Prelude",
+    "fp"
+  ],
+  "author": "Martin Eutinger",
+  "license": "ISC"
+}
