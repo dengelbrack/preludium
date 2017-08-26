@@ -166,7 +166,7 @@
 
     //    always :: a -> b -> a
     //    Haskell const
-    const always = x => () => x;
+    const always = x => _ => x;
 
     //    even, odd :: Number -> Boolean
     const even = n => n % 2 === 0;
