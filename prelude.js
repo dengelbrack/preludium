@@ -156,8 +156,8 @@
     const mod = x => y => y - (x * Math.floor (y / x));
 
     //    sum, product :: [Number] -> Number
-    const sum = foldr1 (plus);
-    const product = foldr1 (times);
+    const sum = foldr (plus) (0);
+    const product = foldr (times) (1);
 
     //    max, min :: Number -> Number -> Number
     const max = x => y => x > y ? x : y;
