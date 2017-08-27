@@ -33,7 +33,7 @@
         return filtered;
     };
 
-    //    foldl, foldr :: (b -> a -> b) -> b -> [a] -> b
+    //    foldl :: (b -> a -> b) -> b -> [a] -> b
     const foldl = f => init => xs => {
         const xsLength = xs.length;
         let i = 0, acc = init;
@@ -42,6 +42,8 @@
         }
         return acc;
     };
+
+    //    foldr :: (a -> b -> b) -> b -> [a] -> b
     const foldr = f => init => xs => {
         let i = xs.length - 1, acc = init;
         for (; i >= 0; i--) {
