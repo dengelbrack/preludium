@@ -231,6 +231,9 @@
     //    range :: Number -> Number -> [Number]
     const range = n => k => {
         const newLength = k - n + 1;
+        if (newLength < 1) {
+            return [];
+        }
         let i = 0, ranged = new Array (newLength);
         for (; i < newLength; i++) {
             ranged [i] = i + n;
