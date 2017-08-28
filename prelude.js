@@ -253,7 +253,7 @@
     const show = x => {
         if (isList (x)) {
             return showList (x);
-        } if (typeof x === "string") {
+        } if (typeof x === "string" || typeof x === "object") {
             return JSON.stringify (x);
         } else {
             return x.toString ();
