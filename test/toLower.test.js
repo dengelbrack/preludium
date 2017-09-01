@@ -1,7 +1,7 @@
 const { toLower } = require ("../prelude");
 
 test("toLower ('A') to equal 'a'", () => {
-    expect(toLower ('A')).toBe('a');
+    expect(toLower ("A")).toBe("a");
 });
 
 test("toLower (\"TEST\") to equal \"test\"", () => {

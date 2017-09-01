@@ -9,7 +9,7 @@ test("always ([1]) (2) to equal [1]", () => {
 });
 
 test("always ('1') (2) to be '1'", () => {
-    expect(always ('1') (2)).toBe('1');
+    expect(always ("1") (2)).toBe("1");
 });
 
 test("always ({\"n\": 1}) (2) to equal {\"n\": 1}", () => {

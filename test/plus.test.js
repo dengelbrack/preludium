@@ -13,6 +13,6 @@ test("plus (1) (1.5) to be 2.5", () => {
 });
 
 test("plus ('Hello ') ('World!') to be 'World!Hello ' (hacky)", () => {
-    expect(plus ('Hello ') ('World!')).toBe("World!Hello ");
+    expect(plus ("Hello ") ("World!")).toBe("World!Hello ");
 });
 
