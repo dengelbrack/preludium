@@ -221,7 +221,7 @@
     };
 
     //    words, lines :: String -> [String]
-    const words = str => str.split (" ");
+    const words = str => str === "" ? [] : str.split (" ");
     const lines = str => str.split ("\n");
 
     //    unwords, unlines :: [String] -> String
