@@ -60,22 +60,22 @@
     //    Haskell ($)
     const apply = f => x => f (x);
 
-    //    comp :: (b -> c) -> (a -> b) -> (a -> c)
+    //    comp :: (z -> y, y -> x, ... a -> b) -> a -> z
+    //    https://hackernoon.com/javascript-functional-composition-for-every-day-use-22421ef65a10
+    const comp = (...fs) => x => foldr (apply) (x) (fs);
+
+    //    comp2 :: (b -> c) -> (a -> b) -> (a -> c)
     //    Haskell (.)
-    const comp = f => g => x => f (g (x));
+    const comp2 = f => g => x => f (g (x));
 
     //    comp3 :: (c -> d) -> (b -> c) -> (a -> b) -> (a -> d)
     const comp3 = f => g => h => x => f (g (h (x)));
-
-    //    compose :: (z -> y, y -> x, ... a -> b) -> a -> z
-    //    https://hackernoon.com/javascript-functional-composition-for-every-day-use-22421ef65a10
-    const compose = (...fs) => x => foldr (apply) (x) (fs);
 
     //    compn :: (z -> y) -> (y -> x) -> ... -> (a -> b) -> a -> z
     const compn = arg1 => {
         const compnWorker = fs => argNext => {
             if (typeof argNext !== "function") {
-                return compose (...fs) (argNext);
+                return comp (...fs) (argNext);
             }
             fs.push (argNext);
             return compnWorker (fs);
@@ -195,8 +195,8 @@
     const ors = foldr1 (or);
 
     //    any, all :: (a -> Boolean) -> [a] -> Boolean
-    const any = p => comp (foldr (or) (false)) (map (p));
-    const all = p => comp (foldr (and) (true)) (map (p));
+    const any = p => comp2 (foldr (or) (false)) (map (p));
+    const all = p => comp2 (foldr (and) (true)) (map (p));
 
     //    pair :: a -> b -> (a, b)
     const pair = x => y => [x, y];
@@ -278,7 +278,7 @@
         map, filter,
         foldl, foldr, foldl1, foldr1,
         apply,
-        comp, comp3, compn, compose,
+        comp, comp2, comp3, compn,
         flip,
         curry, uncurry,
         len, empty,
