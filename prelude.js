@@ -96,9 +96,9 @@
     //    Haskell length
     const len = xs => xs.length;
 
-    //    empty :: [a] -> Boolean
+    //    nil :: [a] -> Boolean
     //    Haskell null
-    const empty = xs => xs.length === 0;
+    const nil = xs => xs.length === 0;
 
     //    join :: [a] -> [a] -> [a]
     //    Haskell (++)
@@ -281,7 +281,7 @@
         comp, comp2, comp3, compn,
         flip,
         curry, uncurry,
-        len, empty,
+        len, nil,
         join, concat,
         reverse,
         elem,
