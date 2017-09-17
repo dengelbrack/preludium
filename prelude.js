@@ -263,6 +263,9 @@
     //    read :: String -> a
     const read = str => JSON.parse (str);
 
+    //    print :: a -> IO ()
+    const print = comp2 (console.log) (show);
+
     //    nub :: [a] -> [a]
     const nub = xs => [...new Set (xs)];
 
@@ -303,7 +306,8 @@
         range, isList,
         show, read,
         nub, union,
-        toUpper, toLower
+        toUpper, toLower,
+        print
     };
 })();
 
