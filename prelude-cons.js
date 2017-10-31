@@ -1,5 +1,5 @@
 (function() {
-    'use strict';
+    "use strict";
 
     const List = function(head, tail) {
         this.head = head;
@@ -48,7 +48,7 @@
     const compn = arg1 => {
         const functions = [arg1];
         const compnWorker = argNext => {
-            if(typeof argNext !== 'function') {
+            if(typeof argNext !== "function") {
                 return compUncurried (...functions) (argNext);
             }
             functions.push(argNext);
@@ -103,7 +103,7 @@
 
     // len :: [a] -> number
     // see Haskell length
-    const len = foldl (acc => x => acc + 1) (0);
+    const len = foldl (acc => _ => acc + 1) (0);
 
     // empty, isList, single :: [a] -> boolean
     const empty = list => list instanceof EmptyList;
@@ -162,8 +162,8 @@
 
     // id :: a -> a
     const id = x => x;
-    // ct :: a -> b -> a
-    const ct = x => y => x;
+    // always :: a -> b -> a
+    const always = x => _ => x;
 
     // even, odd :: number -> boolean
     const even = number => number % 2 === 0;
@@ -196,7 +196,7 @@
         this.snd = y;
     };
     Pair.prototype.toString = function() {
-        return '(' + fst (this) + ',' + snd (this) + ')';
+        return "(" + fst (this) + "," + snd (this) + ")";
     };
     // pair a -> b -> pair(a)(b)
     const pair = x => y => new Pair(x, y);
@@ -222,14 +222,14 @@
     // prependString :: (Show a) => string -> [a] -> string
     const prependString = sep => list => {
         if(empty (list)) {
-            return '';
+            return "";
         }
         return sep + head (list) + prependString (sep) (tail (list));
     };
 
     // unwords, unlines :: [string] -> string
-    const unwords = list => head (list) + prependString (' ') (tail (list));
-    const unlines = list => head (list) + prependString ('\n') (tail (list));
+    const unwords = list => head (list) + prependString (" ") (tail (list));
+    const unlines = list => head (list) + prependString ("\n") (tail (list));
 
     // range :: Number -> Number -> [Number]
     const range = n => k => {
@@ -271,14 +271,14 @@
 
     // showList :: [a] -> string
     const showList = list => {
-        return '[' + show (head (list)) + foldr (element => acc => ',' + show (element) + acc) ('') (tail (list)) + ']';
+        return "[" + show (head (list)) + foldr (element => acc => "," + show (element) + acc) ("") (tail (list)) + "]";
     };
 
     // show :: a -> string
     const show = x => {
         if(isList (x)) {
             return showList (x);
-        } if(typeof x === 'string') {
+        } if(typeof x === "string") {
             return JSON.stringify(x);
         } else {
             return x.toString();
@@ -304,7 +304,7 @@
         quot, rem, div, mod,
         sum, product,
         max, min,
-        id, ct,
+        id, always,
         even, odd,
         not, and, or,
         eq, lt, gt, lte, gte,
