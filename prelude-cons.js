@@ -6,31 +6,31 @@
         this.tail = tail;
     };
 
-    const EmptyList = function() {};
+    // EmptyList :: [a]
+    const EmptyList = Symbol("EmptyList");
 
     // cons :: a -> [a] -> [a]
     const cons = x => xs => new List(x, xs);
 
-    // emptyList :: [a]
-    const emptyList = new EmptyList();
-
     // singleton :: a -> [a]
-    const singleton = x => cons (x) (emptyList);
+    const singleton = x => cons (x) (EmptyList);
 
-    // head, last :: [a] -> a
+    // head :: [a] -> a
     const head = list => list.head;
+    // tail :: [a] -> [a]
     const tail = list => list.tail;
 
-    // tail, init :: [a] -> [a]
+    // last :: [a] -> a
     const last = list => {
         if(single (list)) {
             return head (list);
         }
         return last (tail (list));
     };
+    // init :: [a] -> [a]
     const init = list => {
         if(single (list)) {
-            return emptyList;
+            return EmptyList;
         }
         return cons (head (list)) (init (tail (list)));
     };
@@ -106,7 +106,7 @@
     const len = foldl (acc => _ => acc + 1) (0);
 
     // empty, isList, single :: [a] -> boolean
-    const empty = list => list instanceof EmptyList;
+    const empty = list => list === EmptyList;
     const isList = list => or (list instanceof List) (empty (list));
     const single = list => empty (tail (list));
 
@@ -120,15 +120,15 @@
     };
 
     // reverse :: [a] -> [a]
-    const reverse = foldl (flip (cons)) (emptyList);
+    const reverse = foldl (flip (cons)) (EmptyList);
 
     // concat :: [[a]] -> [a]
-    const concat = foldl (join) (emptyList);
+    const concat = foldl (join) (EmptyList);
 
     // take, drop :: number -> [a] -> [a]
     const take = n => list => {
         if(n === 0) {
-            return emptyList;
+            return EmptyList;
         }
         return cons (head (list)) (take (n - 1) (tail (list)));
     };
@@ -210,7 +210,7 @@
     // zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
     const zipWith = f => xs => ys => {
         if(or (empty (xs)) (empty (ys))) {
-            return emptyList;
+            return EmptyList;
         }
         return cons (f (head (xs)) (head (ys))) (zipWith (f) (tail (xs)) (tail (ys)));
     };
@@ -239,12 +239,12 @@
             }
             return cons (n) (rangeRec (n + 1) (list));
         };
-        return rangeRec (n) (emptyList);
+        return rangeRec (n) (EmptyList);
     };
 
     // fromArray :: Array a -> [a]
     const fromArray = arr => {
-        let i = arr.length - 1, list = emptyList;
+        let i = arr.length - 1, list = EmptyList;
         for(; i >= 0; i--){
             let element = arr[i];
             if(Array.isArray(element)) {
@@ -289,7 +289,7 @@
     const read = str => JSON.parse(str);
 
     module.exports = {
-        cons, emptyList, singleton,
+        cons, EmptyList, singleton,
         head, last, tail, init,
         comp, comp3, compn,
         flip,
