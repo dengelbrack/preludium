@@ -244,15 +244,10 @@
     //    isList :: [a] -> Boolean
     const isList = lst => lst instanceof Array;
 
-    //    showList :: [a] -> String
-    const showList = lst => {
-        return "[" + show (head (lst)) + foldr (item => acc => ", " + show (item) + acc) ("") (tail (lst)) + "]";
-    };
-
     //    show :: a -> String
     const show = x => {
-        if (isList (x)) {
-            return showList (x);
+        if (typeof x.show === "function") {
+            return x.show ();
         } if (typeof x === "string" || typeof x === "object") {
             return JSON.stringify (x);
         } else {
