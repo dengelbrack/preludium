@@ -21,18 +21,16 @@ Maybe.prototype.fmap = function (f) {
     else return Just (f (this.fromJust()));
 };
 
-// instance Applicative Maybe
-Maybe.prototype.ap = function (fa) {
-    if (fa === Nothing) return Nothing;
-    else return this.fmap (fa.fromJust());
-};
-Maybe.pure = Just;
-
 // instance Monad Maybe
 Maybe.prototype.bind = function (f) {
     if (this === Nothing) return Nothing;
     else return f (this.fromJust());
 };
+Maybe.prototype.ap = function (mf) {
+    if (mf === Nothing) return Nothing;
+    else return this.fmap (mf.fromJust());
+};
+Maybe.pure = Just;
 
 // instance Show Maybe
 Maybe.prototype.show = function () {
@@ -46,16 +44,15 @@ Array.prototype.fmap = function (f) {
     return map (f) (this);
 };
 
-// instance Applicative []
-Array.prototype.ap = function (fa) {
-    return fa.bind (f => this.bind(x => [f (x)]));
-};
-Array.pure = x => [x];
-
 // instance Monad []
 Array.prototype.bind = function (f) {
     return concat (map (f) (this));
 };
+Array.prototype.ap = function (mf) {
+    return mf.bind (f => this.bind(x => [f (x)]));
+};
+Array.pure = x => [x];
+
 // instance Show []
 Array.prototype.show = function () {
     return "[" + show (head (this)) + foldr (item => acc => ", " + show (item) + acc) ("") (tail (this)) + "]";
@@ -64,19 +61,19 @@ Array.prototype.show = function () {
 
 //    fmap :: Functor f => (a -> b) -> f a -> f b
 const fmap = f => m => m.fmap (f);
-//    ap :: Applicative f => f (a -> b) -> f a -> f b
-const ap = fa => m => m.ap (fa);
-//    pure :: Applicative f => f -> a -> f b
+//    ap :: Monad m => m (a -> b) -> m a -> m b
+const ap = mf => m => m.ap (mf);
+//    pure :: Monad m => m -> a -> m b
 const pure = t => x => t.pure (x);
 //    bind :: Monad m => (a -> m b) -> m a -> m b
 const bind = m => f => m.bind (f);
 
-//    lift :: Applicative f => (a -> b) -> f a -> f b
-const lift = fmap;
-//    lift2 :: Applicative f => (a -> b -> c) -> f a -> f b -> f c
-const lift2 = f => x => ap (fmap (f) (x));
-//    lift3 :: Applicative f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d
-const lift3 = f => x => y => ap (ap (fmap (f) (x)) (y));
+//    lift :: Monad m => (a -> b) -> m a -> m b
+const liftM = fmap;
+//    liftM2 :: Monad m => (a -> b -> c) -> m a -> m b -> m c
+const liftM2 = f => x => ap (fmap (f) (x));
+//    liftM3 :: Monad m => (a -> b -> c -> d) -> m a -> m b -> m c -> m d
+const liftM3 = f => x => y => ap (ap (fmap (f) (x)) (y));
 
 //    type :: Monad m => m a -> m
 const type = m => m.constructor;
@@ -86,7 +83,7 @@ module.exports = {
     Just, Nothing,
     maybe, fromJust,
     fmap, ap, pure, bind,
-    lift, lift2, lift3,
+    liftM, liftM2, liftM3,
     type
 };
 
