@@ -1,7 +1,8 @@
 const { map, concat, show, head, tail, foldr } = require ("./prelude");
 
 const Maybe = function (x) {
-    this.fromJust = () => x;
+    if (typeof x !== "undefined")
+        this.fromJust = () => x;
 };
 //    Just :: a -> Maybe a
 const Just = x => new Maybe (x);
@@ -13,7 +14,7 @@ const maybe = n => f => m => {
     else return f (m.fromJust());
 };
 //    fromJust :: Maybe a -> a
-const fromJust = j => j.fromJust ();
+const fromJust = m => m.fromJust ();
 
 // instance Functor Maybe
 Maybe.prototype.fmap = function (f) {
