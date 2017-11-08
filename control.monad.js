@@ -72,9 +72,9 @@ const bind = m => f => m.bind (f);
 //    lift :: Monad m => (a -> b) -> m a -> m b
 const liftM = fmap;
 //    liftM2 :: Monad m => (a -> b -> c) -> m a -> m b -> m c
-const liftM2 = f => x => ap (fmap (f) (x));
+const liftM2 = f => m1 => m2 => bind (m1) (x1 => bind (m2) (x2 => f (x1) (x2)));
 //    liftM3 :: Monad m => (a -> b -> c -> d) -> m a -> m b -> m c -> m d
-const liftM3 = f => x => y => ap (ap (fmap (f) (x)) (y));
+const liftM3 = f => m1 => m2 => m3 => bind (m1) (x1 => bind (m2) (x2 => bind (m3) (x3 => f (x1) (x2) (x3))));
 
 //    type :: Monad m => m a -> m
 const type = m => m.constructor;
