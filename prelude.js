@@ -141,6 +141,9 @@
         return drop (i) (xs);
     };
 
+    //    replicate :: Int -> a -> [a]
+    const replicate = n => x => map (always (x)) (new Array (n));
+
     //    plus, minus, times, divide, pow :: Number -> Number -> Number
     //    Haskell (+), (-), (*), (/), (^)
     const plus = x => y => y + x;
@@ -285,6 +288,7 @@
         elem,
         take, takeWhile,
         drop, dropWhile,
+        replicate,
         plus, minus, times, divide, pow,
         quot, rem, div, mod,
         sum, product,
