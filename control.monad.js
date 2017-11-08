@@ -76,6 +76,10 @@ const liftM2 = f => m1 => m2 => bind (m1) (x1 => bind (m2) (x2 => f (x1) (x2)));
 //    liftM3 :: Monad m => (a -> b -> c -> d) -> m a -> m b -> m c -> m d
 const liftM3 = f => m1 => m2 => m3 => bind (m1) (x1 => bind (m2) (x2 => bind (m3) (x3 => f (x1) (x2) (x3))));
 
+//    compM2 :: Monad m => (b -> m c) -> (a -> m b) -> a -> m c
+//    Haskell (<=<)
+const compM2 = f => g => x => bind (g (x)) (f);
+
 //    type :: Monad m => m a -> m
 const type = m => m.constructor;
 
@@ -85,6 +89,7 @@ module.exports = {
     maybe, fromJust,
     fmap, ap, pure, bind,
     liftM, liftM2, liftM3,
+    compM2,
     type
 };
 
