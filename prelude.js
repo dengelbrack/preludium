@@ -105,7 +105,7 @@
     const join = xs => ys => xs.concat (ys);
 
     //    concat :: [[a]] -> [a]
-    const concat = foldr (join) ([]);
+    const concat = xs => Array.prototype.concat.apply ([], xs);
 
     //    reverse :: [a] -> [a]
     const reverse = xs => xs.slice ().reverse ();
