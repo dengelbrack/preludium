@@ -107,6 +107,17 @@
     //    concat :: [[a]] -> [a]
     const concat = xs => Array.prototype.concat.apply ([], xs);
 
+    //    concatMap :: (a -> [b]) -> [a] -> [b]
+    const concatMap = f => xs => {
+        const concated = [], xsLength = xs.length;
+        let i = 0;
+        for (; i < xsLength; i++) {
+            const fed = f (xs [i]);
+            concated.push (...fed);
+        }
+        return concated;
+    };
+
     //    reverse :: [a] -> [a]
     const reverse = xs => xs.slice ().reverse ();
 
@@ -283,7 +294,7 @@
         flip,
         curry, uncurry,
         len, nil,
-        join, concat,
+        join, concat, concatMap,
         reverse,
         elem,
         take, takeWhile,
