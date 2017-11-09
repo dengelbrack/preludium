@@ -72,9 +72,9 @@ const bind = m => f => m.bind (f);
 //    lift :: Monad m => (a -> b) -> m a -> m b
 const liftM = fmap;
 //    liftM2 :: Monad m => (a -> b -> c) -> m a -> m b -> m c
-const liftM2 = f => m1 => m2 => bind (m1) (x1 => bind (m2) (x2 => f (x1) (x2)));
+const liftM2 = f => m1 => m2 => bind (m1) (x1 => bind (m2) (x2 => pure (type (m1)) (f (x1) (x2))));
 //    liftM3 :: Monad m => (a -> b -> c -> d) -> m a -> m b -> m c -> m d
-const liftM3 = f => m1 => m2 => m3 => bind (m1) (x1 => bind (m2) (x2 => bind (m3) (x3 => f (x1) (x2) (x3))));
+const liftM3 = f => m1 => m2 => m3 => bind (m1) (x1 => bind (m2) (x2 => bind (m3) (x3 => pure (type (m1)) (f (x1) (x2) (x3)))));
 
 //    compM2 :: Monad m => (b -> m c) -> (a -> m b) -> a -> m c
 //    Haskell (<=<)
