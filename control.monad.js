@@ -1,4 +1,4 @@
-const { map, concat, show, head, tail, foldr } = require ("./prelude");
+const { concatMap, map, show, head, tail, foldr } = require ("./prelude");
 
 const Maybe = function (x) {
     if (typeof x !== "undefined")
@@ -47,7 +47,7 @@ Array.prototype.fmap = function (f) {
 
 // instance Monad []
 Array.prototype.bind = function (f) {
-    return concat (map (f) (this));
+    return concatMap (f) (this);
 };
 Array.prototype.ap = function (mf) {
     return mf.bind (f => this.bind(x => [f (x)]));
