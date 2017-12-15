@@ -100,9 +100,9 @@
     //    Haskell null
     const nil = xs => xs.length === 0;
 
-    //    join :: [a] -> [a] -> [a]
+    //    append :: [a] -> [a] -> [a]
     //    Haskell (++)
-    const join = xs => ys => xs.concat (ys);
+    const append = xs => ys => xs.concat (ys);
 
     //    concat :: [[a]] -> [a]
     const concat = xs => Array.prototype.concat.apply ([], xs);
@@ -279,7 +279,7 @@
     const nub = xs => [...new Set (xs)];
 
     //    union :: [a] -> [a] -> [a]
-    const union = xs => ys => nub (join (xs) (ys));
+    const union = xs => ys => nub (append (xs) (ys));
 
     //    toUpper, toLower :: String -> String
     const toUpper = str => str.toUpperCase ();
@@ -294,7 +294,7 @@
         flip,
         curry, uncurry,
         len, nil,
-        join, concat, concatMap,
+        append, concat, concatMap,
         reverse,
         elem,
         take, takeWhile,
