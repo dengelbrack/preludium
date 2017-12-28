@@ -211,11 +211,6 @@
     //    not :: boolean -> boolean
     const not = b => ! b;
 
-    //    and :: a -> a -> boolean
-    const and = x => y => y && x;
-    //    or :: a -> a -> boolean
-    const or = x => y => y || x;
-
     //    eq :: a -> a -> boolean
     //    Haskell (==)
     const eq = x => y => y === x;
@@ -231,6 +226,13 @@
     //    gte :: a -> a -> boolean
     //    Haskell (<=)
     const gte = x => y => y >= x;
+
+    //    and :: boolean -> boolean -> boolean
+    //    Haskell (&&)
+    const and = x => y => y && x;
+    //    or :: boolean -> boolean -> boolean
+    //    Haskell (||)
+    const or = x => y => y || x;
 
     //    ands :: [boolean] -> boolean
     //    Haskell and
