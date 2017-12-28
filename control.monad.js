@@ -85,7 +85,7 @@ const type = m => m.constructor;
 
 
 module.exports = {
-    Just, Nothing,
+    Maybe, Just, Nothing,
     maybe, fromJust,
     fmap, ap, pure, bind,
     liftM, liftM2, liftM3,
