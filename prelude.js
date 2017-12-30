@@ -95,7 +95,7 @@
     //    uncurry :: (a -> b -> c) -> ((a, b) -> c)
     const uncurry = f => (x, y) => f (x) (y);
 
-    //    len :: [a] -> Number
+    //    len :: [a] -> number
     //    Haskell length
     const len = xs => xs.length;
 
@@ -127,9 +127,9 @@
     //    elem :: a -> [a] -> boolean
     const elem = k => xs => xs.indexOf (k) !== -1;
 
-    //    take :: Number -> [a] -> [a]
+    //    take :: number -> [a] -> [a]
     const take = n => xs => xs.slice (0, n);
-    //    drop :: Number -> [a] -> [a]
+    //    drop :: number -> [a] -> [a]
     const drop = n => xs => xs.slice (n, xs.length);
 
     //    takeWhile :: (a -> boolean) -> [a] -> [a]
@@ -161,39 +161,39 @@
     //    replicate :: Int -> a -> [a]
     const replicate = n => x => map (always (x)) (new Array (n));
 
-    //    plus :: Number -> Number -> Number
+    //    plus :: number -> number -> number
     //    Haskell (+)
     const plus = x => y => y + x;
-    //    minus :: Number -> Number -> Number
+    //    minus :: number -> number -> number
     //    Haskell (-)
     const minus = x => y => y - x;
-    //    times :: Number -> Number -> Number
+    //    times :: number -> number -> number
     //    Haskell (*)
     const times = x => y => y * x;
-    //    divide :: Number -> Number -> Number
+    //    divide :: number -> number -> number
     //    Haskell (/)
     const divide = x => y => y / x;
-    //    pow :: Number -> Number -> Number
+    //    pow :: number -> number -> number
     //    Haskell (^)
     const pow = x => y => Math.pow (y, x);
 
-    //    quot :: Number -> Number -> Number
+    //    quot :: number -> number -> number
     const quot = x => y => ~~ (y / x);
-    //    rem :: Number -> Number -> Number
+    //    rem :: number -> number -> number
     const rem = x => y => y % x;
-    //    div :: Number -> Number -> Number
+    //    div :: number -> number -> number
     const div = x => y => Math.floor (y / x);
-    //    mod :: Number -> Number -> Number
+    //    mod :: number -> number -> number
     const mod = x => y => y - (x * Math.floor (y / x));
 
-    //    sum :: [Number] -> Number
+    //    sum :: [number] -> number
     const sum = foldr (plus) (0);
-    //    product :: [Number] -> Number
+    //    product :: [number] -> number
     const product = foldr (times) (1);
 
-    //    max :: Number -> Number -> Number
+    //    max :: number -> number -> number
     const max = x => y => x > y ? x : y;
-    //    min :: Number -> Number -> Number
+    //    min :: number -> number -> number
     const min = x => y => x < y ? x : y;
 
     //    id :: a -> a
@@ -203,9 +203,9 @@
     //    Haskell const
     const always = x => _ => x;
 
-    //    even :: Number -> boolean
+    //    even :: number -> boolean
     const even = n => n % 2 === 0;
-    //    odd :: Number -> boolean
+    //    odd :: number -> boolean
     const odd = n => Math.abs (n % 2) === 1;
 
     //    not :: boolean -> boolean
@@ -278,7 +278,7 @@
     //    unlines :: [string] -> string
     const unlines = lst => lst.join ("\n");
 
-    //    range :: Number -> Number -> [Number]
+    //    range :: number -> number -> [number]
     const range = n => k => {
         const newLength = k - n + 1;
         if (newLength < 1) {
