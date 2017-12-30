@@ -294,6 +294,37 @@
     //    isList :: [a] -> boolean
     const isList = lst => lst instanceof Array;
 
+    //    nub :: [a] -> [a]
+    const nub = xs => [...new Set (xs)];
+
+    //    union :: [a] -> [a] -> [a]
+    const union = xs => ys => nub (append (xs) (ys));
+
+    //    toUpper :: string -> string
+    const toUpper = str => str.toUpperCase ();
+    //    toLower :: string -> string
+    const toLower = str => str.toLowerCase ();
+
+
+    //    data Maybe
+    const Maybe = function (x) {
+        if (typeof x !== "undefined")
+            this.fromJust = () => x;
+    };
+    //    Just :: a -> Maybe a
+    const Just = x => new Maybe (x);
+    //    Nothing :: Maybe a
+    const Nothing = new Maybe ();
+
+    //    maybe :: b -> (a -> b) -> Maybe a -> b
+    const maybe = n => f => m => {
+        if (m === Nothing) return n;
+        else return f (m.fromJust());
+    };
+    //    fromJust :: Maybe a -> a
+    const fromJust = m => m.fromJust ();
+
+
     //    show :: a -> string
     const show = x => {
         if (typeof x.show === "function") {
@@ -305,22 +336,24 @@
         }
     };
 
+    // instance Show Maybe
+    Maybe.prototype.show = function () {
+        if (this === Nothing) return "Nothing";
+        else return "Just (" + show (this.fromJust()) + ")";
+    };
+
+    // instance Show []
+    Array.prototype.show = function () {
+        return "[" + show (head (this)) + foldr (item => acc => ", " + show (item) + acc) ("") (tail (this)) + "]";
+    };
+
+
     //    read :: string -> a
     const read = str => JSON.parse (str);
 
     //    print :: a -> IO ()
     const print = comp2 (console.log) (show);
 
-    //    nub :: [a] -> [a]
-    const nub = xs => [...new Set (xs)];
-
-    //    union :: [a] -> [a] -> [a]
-    const union = xs => ys => nub (append (xs) (ys));
-
-    //    toUpper :: string -> string
-    const toUpper = str => str.toUpperCase ();
-    //    toLower :: string -> string
-    const toLower = str => str.toLowerCase ();
 
     module.exports = {
         head, last, tail, init,
@@ -351,10 +384,11 @@
         zip, zipWith,
         words, lines, unwords, unlines,
         range, isList,
-        show, read,
         nub, union,
         toUpper, toLower,
-        print
+        Maybe, Just, Nothing,
+        maybe, fromJust,
+        show, read, print
     };
 })();
 

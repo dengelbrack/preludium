@@ -1,21 +1,5 @@
 (function () {
-    const { concatMap, map, show, head, tail, foldr } = require ("./prelude");
-
-    const Maybe = function (x) {
-        if (typeof x !== "undefined")
-            this.fromJust = () => x;
-    };
-    //    Just :: a -> Maybe a
-    const Just = x => new Maybe (x);
-    //    Nothing :: Maybe a
-    const Nothing = new Maybe ();
-    //    maybe :: b -> (a -> b) -> Maybe a -> b
-    const maybe = n => f => m => {
-        if (m === Nothing) return n;
-        else return f (m.fromJust());
-    };
-    //    fromJust :: Maybe a -> a
-    const fromJust = m => m.fromJust ();
+    const { Maybe, Just, Nothing, concatMap, map  } = require ("./prelude");
 
     // instance Functor Maybe
     Maybe.prototype.fmap = function (f) {
@@ -34,12 +18,6 @@
     };
     Maybe.pure = Just;
 
-    // instance Show Maybe
-    Maybe.prototype.show = function () {
-        if (this === Nothing) return "Nothing";
-        else return "Just (" + show (this.fromJust()) + ")";
-    };
-
 
     // instance Functor []
     Array.prototype.fmap = function (f) {
@@ -54,11 +32,6 @@
         return mf.bind (f => this.bind(x => [f (x)]));
     };
     Array.pure = x => [x];
-
-    // instance Show []
-    Array.prototype.show = function () {
-        return "[" + show (head (this)) + foldr (item => acc => ", " + show (item) + acc) ("") (tail (this)) + "]";
-    };
 
 
     //    fmap :: Functor f => (a -> b) -> f a -> f b
@@ -86,8 +59,6 @@
 
 
     module.exports = {
-        Maybe, Just, Nothing,
-        maybe, fromJust,
         fmap, ap, pure, bind,
         liftM, liftM2, liftM3,
         compM2,
