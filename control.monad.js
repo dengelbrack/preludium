@@ -8,15 +8,11 @@
     };
 
     // instance Monad Maybe
+    Maybe.pure = Just;
     Maybe.prototype.bind = function (f) {
         if (this === Nothing) return Nothing;
         else return f (this.fromJust());
     };
-    Maybe.prototype.ap = function (mf) {
-        if (mf === Nothing) return Nothing;
-        else return this.fmap (mf.fromJust());
-    };
-    Maybe.pure = Just;
 
 
     // instance Functor []
@@ -25,23 +21,21 @@
     };
 
     // instance Monad []
+    Array.pure = x => [x];
     Array.prototype.bind = function (f) {
         return concatMap (f) (this);
     };
-    Array.prototype.ap = function (mf) {
-        return mf.bind (f => this.bind(x => [f (x)]));
-    };
-    Array.pure = x => [x];
 
 
     //    fmap :: Functor f => (a -> b) -> f a -> f b
     const fmap = f => m => m.fmap (f);
-    //    ap :: Monad m => m (a -> b) -> m a -> m b
-    const ap = mf => m => m.ap (mf);
     //    pure :: Monad m => m -> a -> m b
     const pure = t => x => t.pure (x);
     //    bind :: Monad m => (a -> m b) -> m a -> m b
     const bind = m => f => m.bind (f);
+
+    //    ap :: Monad m => m (a -> b) -> m a -> m b
+    const ap = mf => m => mf.bind (f => m.bind(x => pure (type (m)) (f (x))));
 
     //    lift :: Monad m => (a -> b) -> m a -> m b
     const liftM = fmap;
@@ -59,7 +53,7 @@
 
 
     module.exports = {
-        fmap, ap, pure, bind,
+        fmap, pure, bind, ap,
         liftM, liftM2, liftM3,
         compM2,
         type
