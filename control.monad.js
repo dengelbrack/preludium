@@ -36,7 +36,7 @@ Maybe.pure = Just;
 // instance Show Maybe
 Maybe.prototype.show = function () {
     if (this === Nothing) return "Nothing";
-    else return "Just " + this.fromJust() + "";
+    else return "Just (" + show (this.fromJust()) + ")";
 };
 
 
