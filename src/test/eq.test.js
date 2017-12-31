@@ -25,6 +25,6 @@ test("1 is equal to [1] is false", () => {
 });
 
 test("[1] is equal to [1] is false", () => {
-    expect(eq ([1]) ([1])).toBeFalsy();
+    expect(eq ([1]) ([1])).toBeTruthy();
 });
 

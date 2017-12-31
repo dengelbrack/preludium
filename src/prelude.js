@@ -211,9 +211,6 @@
     //    not :: Boolean -> Boolean
     const not = b => ! b;
 
-    //    eq :: a -> a -> Boolean
-    //    Haskell (==)
-    const eq = x => y => y === x;
     //    lt :: a -> a -> Boolean
     //    Haskell (>)
     const lt = x => y => y < x;
@@ -368,6 +365,50 @@
     //    print :: Show a => a -> IO ()
     const print = comp2 (console.log) (show);
 
+    // class Eq a where
+    //    eq :: a -> a -> Boolean
+    //    Haskell (==)
+    const eq = x => y => {
+        if (typeof x.eq === "function") {
+            return x.eq (y);
+        } else {
+            throw new Error ("No instance for (Eq " + x.constructor.name + ") arising from a use of 'eq'");
+        }
+    };
+    //    neq :: a -> a -> Boolean
+    //    Haskell (/=)
+    const neq = x => y => not (eq (x) (y));
+
+    // instance Eq Number
+    Number.prototype.eq = function (n) {
+        return this === n;
+    };
+
+    // instance Eq String
+    String.prototype.eq = function (s) {
+        return this === s;
+    };
+
+    // instance Eq Boolean
+    Boolean.prototype.eq = function (b) {
+        return this === b;
+    };
+
+    // instance Eq a => Eq [a]
+    Array.prototype.eq = function (xs) {
+        if (this.length !== xs.length) return false;
+        let i = 0;
+        for (; i < this.length; i++)
+            if (neq (this [i]) (xs [i])) return false;
+        return true;
+    };
+
+    // instance Eq a => Eq (Maybe a)
+    Maybe.prototype.eq = function (m) {
+        if (this === Nothing || m === Nothing) return this === m;
+        else return eq (this.fromJust ()) (m.fromJust ());
+    };
+
 
     //    lookup :: String -> {String: a} -> Maybe a
     const lookup = k => o => {
@@ -398,7 +439,7 @@
         id, always,
         even, odd,
         not, and, or,
-        eq, lt, gt, lte, gte,
+        lt, gt, lte, gte,
         ands, ors,
         any, all,
         fst, snd,
@@ -410,6 +451,7 @@
         Maybe, Just, Nothing,
         maybe, fromJust,
         show, read, print,
+        eq, neq,
         lookup
     };
 })();
