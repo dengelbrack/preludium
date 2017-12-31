@@ -124,9 +124,6 @@
     //    reverse :: [a] -> [a]
     const reverse = xs => xs.slice ().reverse ();
 
-    //    elem :: a -> [a] -> Boolean
-    const elem = k => xs => xs.indexOf (k) !== -1;
-
     //    take :: Number -> [a] -> [a]
     const take = n => xs => xs.slice (0, n);
     //    drop :: Number -> [a] -> [a]
@@ -410,6 +407,9 @@
     };
 
 
+    //    elem :: a -> [a] -> Boolean
+    const elem = comp2 (any) (eq);
+
     //    lookup :: String -> {String: a} -> Maybe a
     const lookup = k => o => {
         const v = o[k];
@@ -428,7 +428,6 @@
         len, nil,
         append, concat, concatMap,
         reverse,
-        elem,
         take, takeWhile,
         drop, dropWhile,
         replicate,
@@ -452,6 +451,7 @@
         maybe, fromJust,
         show, read, print,
         eq, neq,
+        elem,
         lookup
     };
 })();
