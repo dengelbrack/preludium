@@ -306,7 +306,7 @@
     const toLower = str => str.toLowerCase ();
 
 
-    //    data Maybe
+    // data Maybe
     const Maybe = function (x) {
         if (typeof x !== "undefined")
             this.fromJust = () => x;
@@ -325,33 +325,47 @@
     const fromJust = m => m.fromJust ();
 
 
+    // class Show a where
     //    show :: a -> string
     const show = x => {
         if (typeof x.show === "function") {
             return x.show ();
-        } if (typeof x === "string" || typeof x === "object") {
-            return JSON.stringify (x);
         } else {
-            return x.toString ();
+            throw new Error ("No instance for (Show " + x.constructor.name + ") arising from a use of 'show'");
         }
     };
 
-    // instance Show Maybe
+    // instance Show number
+    Number.prototype.show = function () {
+        return this.toString ();
+    };
+
+    // instance Show string
+    String.prototype.show = function () {
+        return JSON.stringify (this);
+    };
+
+    // instance Show boolean
+    Boolean.prototype.show = function () {
+        return this.toString ();
+    };
+
+    // instance Show a => Show [a]
+    Array.prototype.show = function () {
+        return "[" + show (head (this)) + foldr (item => acc => ", " + show (item) + acc) ("") (tail (this)) + "]";
+    };
+
+    // instance Show a => Show (Maybe a)
     Maybe.prototype.show = function () {
         if (this === Nothing) return "Nothing";
         else return "Just (" + show (this.fromJust()) + ")";
-    };
-
-    // instance Show []
-    Array.prototype.show = function () {
-        return "[" + show (head (this)) + foldr (item => acc => ", " + show (item) + acc) ("") (tail (this)) + "]";
     };
 
 
     //    read :: string -> a
     const read = str => JSON.parse (str);
 
-    //    print :: a -> IO ()
+    //    print :: Show a => a -> IO ()
     const print = comp2 (console.log) (show);
 
 
