@@ -29,7 +29,7 @@
 
     //    fmap :: Functor f => (a -> b) -> f a -> f b
     const fmap = f => m => m.fmap (f);
-    //    pure :: Monad m => m -> a -> m b
+    //    pure :: Monad m => m -> a -> m a
     const pure = t => x => t.pure (x);
     //    bind :: Monad m => (a -> m b) -> m a -> m b
     const bind = m => f => m.bind (f);
