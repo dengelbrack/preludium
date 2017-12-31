@@ -1,11 +1,27 @@
 (function () {
     const { Maybe, Just, Nothing, concatMap, map  } = require ("./prelude");
 
+    // class Functor f where
+    //    fmap :: (a -> b) -> f a -> f b
+    const fmap = f => m => m.fmap (f);
+
     // instance Functor Maybe
     Maybe.prototype.fmap = function (f) {
         if (this === Nothing) return Nothing;
         else return Just (f (this.fromJust()));
     };
+
+    // instance Functor []
+    Array.prototype.fmap = function (f) {
+        return map (f) (this);
+    };
+
+
+    // class Functor m => Monad m where
+    //    pure :: m -> a -> m a
+    const pure = t => x => t.pure (x);
+    //    bind :: (a -> m b) -> m a -> m b
+    const bind = m => f => m.bind (f);
 
     // instance Monad Maybe
     Maybe.pure = Just;
@@ -14,25 +30,12 @@
         else return f (this.fromJust());
     };
 
-
-    // instance Functor []
-    Array.prototype.fmap = function (f) {
-        return map (f) (this);
-    };
-
     // instance Monad []
     Array.pure = x => [x];
     Array.prototype.bind = function (f) {
         return concatMap (f) (this);
     };
 
-
-    //    fmap :: Functor f => (a -> b) -> f a -> f b
-    const fmap = f => m => m.fmap (f);
-    //    pure :: Monad m => m -> a -> m a
-    const pure = t => x => t.pure (x);
-    //    bind :: Monad m => (a -> m b) -> m a -> m b
-    const bind = m => f => m.bind (f);
 
     //    ap :: Monad m => m (a -> b) -> m a -> m b
     const ap = mf => m => mf.bind (f => m.bind (x => pure (type (m)) (f (x))));
