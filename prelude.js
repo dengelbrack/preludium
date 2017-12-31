@@ -355,6 +355,13 @@
     const print = comp2 (console.log) (show);
 
 
+    //    lookup :: s -> {s: a} -> Maybe a
+    const lookup = k => o => {
+        const v = o[k];
+        if (typeof v === "undefined") return Nothing;
+        else return Just (v);
+    };
+
     module.exports = {
         head, last, tail, init,
         map, filter,
@@ -388,7 +395,8 @@
         toUpper, toLower,
         Maybe, Just, Nothing,
         maybe, fromJust,
-        show, read, print
+        show, read, print,
+        lookup
     };
 })();
 
