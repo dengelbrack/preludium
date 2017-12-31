@@ -35,18 +35,18 @@
     const bind = m => f => m.bind (f);
 
     //    ap :: Monad m => m (a -> b) -> m a -> m b
-    const ap = mf => m => mf.bind (f => m.bind(x => pure (type (m)) (f (x))));
+    const ap = mf => m => mf.bind (f => m.bind (x => pure (type (m)) (f (x))));
 
     //    lift :: Monad m => (a -> b) -> m a -> m b
     const liftM = fmap;
     //    liftM2 :: Monad m => (a -> b -> c) -> m a -> m b -> m c
-    const liftM2 = f => m1 => m2 => bind (m1) (x1 => bind (m2) (x2 => pure (type (m1)) (f (x1) (x2))));
+    const liftM2 = f => m1 => m2 => m1.bind (x1 => m2.bind (x2 => pure (type (m1)) (f (x1) (x2))));
     //    liftM3 :: Monad m => (a -> b -> c -> d) -> m a -> m b -> m c -> m d
-    const liftM3 = f => m1 => m2 => m3 => bind (m1) (x1 => bind (m2) (x2 => bind (m3) (x3 => pure (type (m1)) (f (x1) (x2) (x3)))));
+    const liftM3 = f => m1 => m2 => m3 => m1.bind (x1 => m2.bind (x2 => m3.bind (x3 => pure (type (m1)) (f (x1) (x2) (x3)))));
 
     //    compM2 :: Monad m => (b -> m c) -> (a -> m b) -> a -> m c
     //    Haskell (<=<)
-    const compM2 = f => g => x => bind (g (x)) (f);
+    const compM2 = f => g => x => g (x).bind (f);
 
     //    type :: Monad m => m a -> m
     const type = m => m.constructor;
