@@ -22,7 +22,7 @@
         return mapped;
     };
 
-    //    filter :: (a -> boolean) -> [a] -> [a]
+    //    filter :: (a -> Boolean) -> [a] -> [a]
     const filter = p => xs => {
         const xsLength = xs.length;
         let i = 0, filtered = [];
@@ -95,11 +95,11 @@
     //    uncurry :: (a -> b -> c) -> ((a, b) -> c)
     const uncurry = f => (x, y) => f (x) (y);
 
-    //    len :: [a] -> number
+    //    len :: [a] -> Number
     //    Haskell length
     const len = xs => xs.length;
 
-    //    nil :: [a] -> boolean
+    //    nil :: [a] -> Boolean
     //    Haskell null
     const nil = xs => xs.length === 0;
 
@@ -124,15 +124,15 @@
     //    reverse :: [a] -> [a]
     const reverse = xs => xs.slice ().reverse ();
 
-    //    elem :: a -> [a] -> boolean
+    //    elem :: a -> [a] -> Boolean
     const elem = k => xs => xs.indexOf (k) !== -1;
 
-    //    take :: number -> [a] -> [a]
+    //    take :: Number -> [a] -> [a]
     const take = n => xs => xs.slice (0, n);
-    //    drop :: number -> [a] -> [a]
+    //    drop :: Number -> [a] -> [a]
     const drop = n => xs => xs.slice (n, xs.length);
 
-    //    takeWhile :: (a -> boolean) -> [a] -> [a]
+    //    takeWhile :: (a -> Boolean) -> [a] -> [a]
     const takeWhile = p => xs => {
         const xsLength = xs.length;
         let i = 0, taken = [];
@@ -146,7 +146,7 @@
         return taken;
     };
 
-    //    dropWhile :: (a -> boolean) -> [a] -> [a]
+    //    dropWhile :: (a -> Boolean) -> [a] -> [a]
     const dropWhile = p => xs => {
         const xsLength = xs.length;
         let i = 0;
@@ -161,39 +161,39 @@
     //    replicate :: Int -> a -> [a]
     const replicate = n => x => map (always (x)) (new Array (n));
 
-    //    plus :: number -> number -> number
+    //    plus :: Number -> Number -> Number
     //    Haskell (+)
     const plus = x => y => y + x;
-    //    minus :: number -> number -> number
+    //    minus :: Number -> Number -> Number
     //    Haskell (-)
     const minus = x => y => y - x;
-    //    times :: number -> number -> number
+    //    times :: Number -> Number -> Number
     //    Haskell (*)
     const times = x => y => y * x;
-    //    divide :: number -> number -> number
+    //    divide :: Number -> Number -> Number
     //    Haskell (/)
     const divide = x => y => y / x;
-    //    pow :: number -> number -> number
+    //    pow :: Number -> Number -> Number
     //    Haskell (^)
     const pow = x => y => Math.pow (y, x);
 
-    //    quot :: number -> number -> number
+    //    quot :: Number -> Number -> Number
     const quot = x => y => ~~ (y / x);
-    //    rem :: number -> number -> number
+    //    rem :: Number -> Number -> Number
     const rem = x => y => y % x;
-    //    div :: number -> number -> number
+    //    div :: Number -> Number -> Number
     const div = x => y => Math.floor (y / x);
-    //    mod :: number -> number -> number
+    //    mod :: Number -> Number -> Number
     const mod = x => y => y - (x * Math.floor (y / x));
 
-    //    sum :: [number] -> number
+    //    sum :: [Number] -> Number
     const sum = foldr (plus) (0);
-    //    product :: [number] -> number
+    //    product :: [Number] -> Number
     const product = foldr (times) (1);
 
-    //    max :: number -> number -> number
+    //    max :: Number -> Number -> Number
     const max = x => y => x > y ? x : y;
-    //    min :: number -> number -> number
+    //    min :: Number -> Number -> Number
     const min = x => y => x < y ? x : y;
 
     //    id :: a -> a
@@ -203,47 +203,47 @@
     //    Haskell const
     const always = x => _ => x;
 
-    //    even :: number -> boolean
+    //    even :: Number -> Boolean
     const even = n => n % 2 === 0;
-    //    odd :: number -> boolean
+    //    odd :: Number -> Boolean
     const odd = n => Math.abs (n % 2) === 1;
 
-    //    not :: boolean -> boolean
+    //    not :: Boolean -> Boolean
     const not = b => ! b;
 
-    //    eq :: a -> a -> boolean
+    //    eq :: a -> a -> Boolean
     //    Haskell (==)
     const eq = x => y => y === x;
-    //    lt :: a -> a -> boolean
+    //    lt :: a -> a -> Boolean
     //    Haskell (>)
     const lt = x => y => y < x;
-    //    gt :: a -> a -> boolean
+    //    gt :: a -> a -> Boolean
     //    Haskell (<)
     const gt = x => y => y > x;
-    //    lte :: a -> a -> boolean
+    //    lte :: a -> a -> Boolean
     //    Haskell (>=)
     const lte = x => y => y <= x;
-    //    gte :: a -> a -> boolean
+    //    gte :: a -> a -> Boolean
     //    Haskell (<=)
     const gte = x => y => y >= x;
 
-    //    and :: boolean -> boolean -> boolean
+    //    and :: Boolean -> Boolean -> Boolean
     //    Haskell (&&)
     const and = x => y => y && x;
-    //    or :: boolean -> boolean -> boolean
+    //    or :: Boolean -> Boolean -> Boolean
     //    Haskell (||)
     const or = x => y => y || x;
 
-    //    ands :: [boolean] -> boolean
+    //    ands :: [Boolean] -> Boolean
     //    Haskell and
     const ands = foldr1 (and);
-    //    ors :: [boolean] -> boolean
+    //    ors :: [Boolean] -> Boolean
     //    Haskell or
     const ors = foldr1 (or);
 
-    //    any :: (a -> boolean) -> [a] -> boolean
+    //    any :: (a -> Boolean) -> [a] -> Boolean
     const any = p => comp2 (foldr (or) (false)) (map (p));
-    //    all :: (a -> boolean) -> [a] -> boolean
+    //    all :: (a -> Boolean) -> [a] -> Boolean
     const all = p => comp2 (foldr (and) (true)) (map (p));
 
     //    pair :: a -> b -> (a, b)
@@ -268,17 +268,17 @@
         return zipped;
     };
 
-    //    words :: string -> [string]
+    //    words :: String -> [String]
     const words = str => str === "" ? [] : str.split (" ");
-    //    lines :: string -> [string]
+    //    lines :: String -> [String]
     const lines = str => str.split ("\n");
 
-    //    unwords :: [string] -> string
+    //    unwords :: [String] -> String
     const unwords = lst => lst.join (" ");
-    //    unlines :: [string] -> string
+    //    unlines :: [String] -> String
     const unlines = lst => lst.join ("\n");
 
-    //    range :: number -> number -> [number]
+    //    range :: Number -> Number -> [Number]
     const range = n => k => {
         const newLength = k - n + 1;
         if (newLength < 1) {
@@ -291,7 +291,7 @@
         return ranged;
     };
 
-    //    isList :: [a] -> boolean
+    //    isList :: [a] -> Boolean
     const isList = lst => lst instanceof Array;
 
     //    nub :: [a] -> [a]
@@ -300,9 +300,9 @@
     //    union :: [a] -> [a] -> [a]
     const union = xs => ys => nub (append (xs) (ys));
 
-    //    toUpper :: string -> string
+    //    toUpper :: String -> String
     const toUpper = str => str.toUpperCase ();
-    //    toLower :: string -> string
+    //    toLower :: String -> String
     const toLower = str => str.toLowerCase ();
 
 
@@ -326,7 +326,7 @@
 
 
     // class Show a where
-    //    show :: a -> string
+    //    show :: a -> String
     const show = x => {
         if (typeof x.show === "function") {
             return x.show ();
@@ -335,17 +335,17 @@
         }
     };
 
-    // instance Show number
+    // instance Show Number
     Number.prototype.show = function () {
         return this.toString ();
     };
 
-    // instance Show string
+    // instance Show String
     String.prototype.show = function () {
         return JSON.stringify (this);
     };
 
-    // instance Show boolean
+    // instance Show Boolean
     Boolean.prototype.show = function () {
         return this.toString ();
     };
@@ -362,14 +362,14 @@
     };
 
 
-    //    read :: string -> a
+    //    read :: String -> a
     const read = str => JSON.parse (str);
 
     //    print :: Show a => a -> IO ()
     const print = comp2 (console.log) (show);
 
 
-    //    lookup :: string -> {string: a} -> Maybe a
+    //    lookup :: String -> {String: a} -> Maybe a
     const lookup = k => o => {
         const v = o[k];
         if (typeof v === "undefined") return Nothing;
