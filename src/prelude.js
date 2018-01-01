@@ -63,7 +63,7 @@
     //    Haskell ($)
     const apply = f => x => f (x);
 
-    //    comp :: (z -> y, y -> x, ... a -> b) -> a -> z
+    //    comp :: (y -> z, x -> y, ... a -> b) -> a -> z
     //    https://hackernoon.com/javascript-functional-composition-for-every-day-use-22421ef65a10
     const comp = (...fs) => x => foldr (apply) (x) (fs);
 
