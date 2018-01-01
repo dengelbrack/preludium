@@ -303,7 +303,8 @@
     // data Maybe
     const Maybe = function (x) {
         if (typeof x !== "undefined")
-            this.fromJust = () => x;
+            this.fromJust = x;
+        Object.freeze (this);
     };
     //    Just :: a -> Maybe a
     const Just = x => new Maybe (x);
@@ -313,10 +314,10 @@
     //    maybe :: b -> (a -> b) -> Maybe a -> b
     const maybe = n => f => m => {
         if (m === Nothing) return n;
-        else return f (m.fromJust());
+        else return f (m.fromJust);
     };
     //    fromJust :: Maybe a -> a
-    const fromJust = m => m.fromJust ();
+    const fromJust = m => m.fromJust;
 
 
     // class Show a where
@@ -352,7 +353,7 @@
     // instance Show a => Show (Maybe a)
     Maybe.prototype.show = function () {
         if (this === Nothing) return "Nothing";
-        else return "Just (" + show (this.fromJust()) + ")";
+        else return "Just (" + show (this.fromJust) + ")";
     };
 
 
@@ -403,7 +404,7 @@
     // instance Eq a => Eq (Maybe a)
     Maybe.prototype.eq = function (m) {
         if (this === Nothing || m === Nothing) return this === m;
-        else return eq (this.fromJust ()) (m.fromJust ());
+        else return eq (this.fromJust) (m.fromJust);
     };
 
 

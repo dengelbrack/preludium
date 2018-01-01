@@ -8,7 +8,7 @@
     // instance Functor Maybe
     Maybe.prototype.fmap = function (f) {
         if (this === Nothing) return Nothing;
-        else return Just (f (this.fromJust()));
+        else return Just (f (this.fromJust));
     };
 
     // instance Functor []
@@ -27,7 +27,7 @@
     Maybe.pure = Just;
     Maybe.prototype.bind = function (f) {
         if (this === Nothing) return Nothing;
-        else return f (this.fromJust());
+        else return f (this.fromJust);
     };
 
     // instance Monad []
