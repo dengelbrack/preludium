@@ -442,7 +442,7 @@
         lt, gt, lte, gte,
         ands, ors,
         any, all,
-        fst, snd,
+        Pair, fst, snd,
         zip, zipWith,
         words, lines, unwords, unlines,
         range, isList,
