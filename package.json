@@ -1,15 +1,15 @@
 {
   "name": "preludejs",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Haskell Prelude (and more) for JavaScript",
   "main": "prelude.js",
   "scripts": {
     "test": "jest"
   },
   "keywords": [
-    "Haskell",
-    "Prelude",
-    "fp"
+    "haskell",
+    "prelude",
+    "functional programming"
   ],
   "author": "Martin Eutinger",
   "license": "ISC",
