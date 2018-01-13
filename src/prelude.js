@@ -65,7 +65,7 @@
 
     //    comp :: (y -> z, x -> y, ... a -> b) -> a -> z
     //    https://hackernoon.com/javascript-functional-composition-for-every-day-use-22421ef65a10
-    const comp = (...fs) => x => foldr (apply) (x) (fs);
+    const comp = (...fs) => foldr (comp2) (id) (fs);
 
     //    comp2 :: (b -> c) -> (a -> b) -> (a -> c)
     //    Haskell (.)
