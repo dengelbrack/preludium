@@ -322,13 +322,7 @@
 
     // class Show a where
     //    show :: a -> String
-    const show = x => {
-        if (typeof x.show === "function") {
-            return x.show ();
-        } else {
-            throw new Error ("No instance for (Show " + x.constructor.name + ") arising from a use of 'show'");
-        }
-    };
+    const show = x => x.show ();
 
     // instance Show Number
     Number.prototype.show = function () {
@@ -363,16 +357,11 @@
     //    print :: Show a => a -> IO ()
     const print = comp2 (console.log) (show);
 
+
     // class Eq a where
     //    eq :: a -> a -> Boolean
     //    Haskell (==)
-    const eq = x => y => {
-        if (typeof x.eq === "function") {
-            return x.eq (y);
-        } else {
-            throw new Error ("No instance for (Eq " + x.constructor.name + ") arising from a use of 'eq'");
-        }
-    };
+    const eq = x => y => x.eq (y);
     //    neq :: a -> a -> Boolean
     //    Haskell (/=)
     const neq = x => y => not (eq (x) (y));
