@@ -1,5 +1,6 @@
 (function () {
-    const { Maybe, Just, Nothing, concatMap, map  } = require ("./prelude");
+    const { Maybe, Just, Nothing, concatMap, map } = require ("./prelude");
+
 
     // class Functor f where
     //    fmap :: (a -> b) -> f a -> f b
@@ -22,6 +23,9 @@
     const pure = t => x => t.pure (x);
     //    bind :: (a -> m b) -> m a -> m b
     const bind = m => f => m.bind (f);
+    //    then :: m a -> m b -> m b
+    //    Haskell (>>)
+    const then = m1 => m2 => m1.then (m2);
 
     // instance Monad Maybe
     Maybe.pure = Just;
@@ -29,11 +33,18 @@
         if (this === Nothing) return Nothing;
         else return f (this.fromJust);
     };
+    Maybe.prototype.then = function (m2) {
+        if (this === Nothing) return Nothing;
+        else return m2;
+    };
 
     // instance Monad []
     Array.pure = x => [x];
     Array.prototype.bind = function (f) {
         return concatMap (f) (this);
+    };
+    Array.prototype.then = function (ys) {
+        return this.bind (_ => ys);
     };
 
 
@@ -56,9 +67,9 @@
 
 
     module.exports = {
-        fmap, pure, bind, ap,
-        liftM, liftM2, liftM3,
-        compM2,
+        fmap,
+        pure, bind, then,
+        ap, liftM, liftM2, liftM3, compM2,
         type
     };
 })();
