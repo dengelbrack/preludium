@@ -20,8 +20,10 @@
 
     // class Functor m => Monad m where
     //    pure :: m -> a -> m a
+    //    Haskell return
     const pure = t => x => t.pure (x);
     //    bind :: (a -> m b) -> m a -> m b
+    //    Haskell (>>=)
     const bind = m => f => m.bind (f);
     //    then :: m a -> m b -> m b
     //    Haskell (>>)
