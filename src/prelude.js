@@ -240,7 +240,7 @@
     //    all :: (a -> Boolean) -> [a] -> Boolean
     const all = p => comp2 (foldr (and) (true)) (map (p));
 
-    //    Pair :: a -> b -> (a, b)
+    //    Pair :: a -> b -> Pair a b
     const Pair = x => y => [x, y];
 
     //    fst :: (a, b) -> a
@@ -249,7 +249,7 @@
     //    snd :: (a, b) -> b
     const snd = tuple => tuple [1];
 
-    //    zip :: [a] -> [b] -> [(a, b)]
+    //    zip :: [a] -> [b] -> [Pair a b]
     const zip = xs => ys => zipWith (Pair) (xs) (ys);
 
     //    zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
