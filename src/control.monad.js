@@ -1,5 +1,5 @@
 (function () {
-    const { Maybe, Just, Nothing, concatMap, map } = require ("./prelude");
+    const { Maybe, Just, Nothing, concatMap, map, foldr } = require ("./prelude");
 
 
     // class Functor f where
@@ -60,9 +60,15 @@
     //    liftM3 :: Monad m => (a -> b -> c -> d) -> m a -> m b -> m c -> m d
     const liftM3 = f => m1 => m2 => m3 => m1.bind (x1 => m2.bind (x2 => m3.bind (x3 => pure (type (m1)) (f (x1) (x2) (x3)))));
 
+    //    compM :: Monad m => m -> (y -> m z, x -> m y, ... a -> m b) -> (a -> m z)
+    const compM = t => (...fs) => foldr (compM2) (pure (t)) (fs);
+
     //    compM2 :: Monad m => (b -> m c) -> (a -> m b) -> a -> m c
     //    Haskell (<=<)
     const compM2 = f => g => x => g (x).bind (f);
+
+    //    compM3 :: Monad m => (c -> m d) -> (b -> m c) -> (a -> m b) -> a -> m d
+    const compM3 = f => g => h => x => h (x).bind (g).bind (f);
 
     //    type :: Monad m => m a -> m
     const type = m => m.constructor;
@@ -71,7 +77,8 @@
     module.exports = {
         fmap,
         pure, bind, then,
-        ap, liftM, liftM2, liftM3, compM2,
+        ap, liftM, liftM2, liftM3,
+        compM, compM2, compM3,
         type
     };
 })();
