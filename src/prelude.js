@@ -316,8 +316,6 @@
         if (m === Nothing) return n;
         else return f (m.fromJust);
     };
-    //    fromJust :: Maybe a -> a
-    const fromJust = m => m.fromJust;
 
 
     // class Show a where
@@ -437,8 +435,7 @@
         range, isList,
         nub, union,
         toUpper, toLower,
-        Maybe, Just, Nothing,
-        maybe, fromJust,
+        Maybe, Just, Nothing, maybe,
         show, read, print,
         eq, neq,
         elem,
