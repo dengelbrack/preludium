@@ -244,10 +244,10 @@
     //    Pair :: a -> b -> Pair a b
     const Pair = x => y => [x, y];
 
-    //    fst :: (a, b) -> a
+    //    fst :: Pair a b -> a
     const fst = tuple => tuple [0];
 
-    //    snd :: (a, b) -> b
+    //    snd :: Pair a b -> b
     const snd = tuple => tuple [1];
 
     //    zip :: [a] -> [b] -> [Pair a b]
@@ -437,7 +437,7 @@
         else return eq (this.unRight) (e2.unRight);
     };
 
-    //    elem :: a -> [a] -> Boolean
+    //    elem :: Eq a => a -> [a] -> Boolean
     const elem = comp2 (any) (eq);
 
     //    lookup :: String -> {String: a} -> Maybe a
