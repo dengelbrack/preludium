@@ -75,18 +75,6 @@
     //    comp3 :: (c -> d) -> (b -> c) -> (a -> b) -> (a -> d)
     const comp3 = f => g => h => x => f (g (h (x)));
 
-    //    compn :: (z -> y) -> (y -> x) -> ... -> (a -> b) -> a -> z
-    const compn = arg1 => {
-        const compnWorker = fs => argNext => {
-            if (typeof argNext !== "function") {
-                return comp (...fs) (argNext);
-            }
-            fs.push (argNext);
-            return compnWorker (fs);
-        };
-        return compnWorker ([arg1]);
-    };
-
     //    flip :: (a -> b -> c) -> (b -> a -> c)
     const flip = f => x => y => f (y) (x);
 
@@ -452,7 +440,7 @@
         map, filter,
         foldl, foldr, foldl1, foldr1,
         apply,
-        comp, comp2, comp3, compn,
+        comp, comp2, comp3,
         flip,
         curry, uncurry,
         len, nil,
