@@ -2,13 +2,13 @@
     "use strict";
 
     const { Pair, append, show, eq } = require ("./prelude");
+    const { ValueConstructor } = require ("./meta.util.js");
 
     // data Writer
-    const Writer = function (x, ss) {
+    const Writer = ValueConstructor (function Writer () {}) (function Writer (x, ss) {
         this.value = x;
         this.writing = ss;
-        Object.freeze (this);
-    };
+    });
 
     //    runWriter :: Writer a -> Pair a [String]
     const runWriter = w => Pair (w.value) (w.writing);
@@ -17,10 +17,10 @@
     const execWriter = w => w.writing;
 
     //    writer :: (a, [String]) -> Writer a
-    const writer = (x, ss) => new Writer (x, ss);
+    const writer = (x, ss) => Writer (x) (ss);
 
     //    tell :: [String] -> Writer ()
-    const tell = ss => new Writer (null, ss);
+    const tell = ss => Writer (null) (ss);
 
     // instance Functor Writer
     Writer.prototype.fmap = function (f) {
@@ -53,3 +53,4 @@
         writer, tell
     };
 })();
+
