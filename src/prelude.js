@@ -1,6 +1,7 @@
 // todo: span, break, splitAt, scan*, zip3*, unzip*, (!!)
 (function () {
     "use strict";
+    const { ValueConstructor } = require ("./meta.util");
 
     //    head :: [a] -> a
     const head = xs => xs [0];
@@ -301,20 +302,22 @@
 
 
     // data Maybe
-    const Maybe = function (x) {
-        if (typeof x !== "undefined")
-            this.fromJust = x;
-        Object.freeze (this);
-    };
-    //    Just :: a -> Maybe a
-    const Just = x => new Maybe (x);
+    const Maybe = function () {};
     //    Nothing :: Maybe a
-    const Nothing = new Maybe ();
+    const Nothing = ValueConstructor (Maybe) (function Nothing () {});
+    //    Just :: a -> Maybe a
+    const Just = ValueConstructor (Maybe) (function Just (x) { this.unJust = x; });
+
+    //    isJust :: Maybe a -> Boolean
+    const isJust = m => m.valueconstructor.name === "Just";
+
+    //    isNothing :: Maybe a -> Boolean
+    const isNothing = m => m.valueconstructor.name === "Nothing";
 
     //    maybe :: b -> (a -> b) -> Maybe a -> b
     const maybe = n => f => m => {
         if (m === Nothing) return n;
-        else return f (m.fromJust);
+        else return f (m.unJust);
     };
 
 
@@ -343,11 +346,12 @@
     };
 
     // instance Show a => Show (Maybe a)
-    Maybe.prototype.show = function () {
-        if (this === Nothing) return "Nothing";
-        else return "Just (" + show (this.fromJust) + ")";
+    Just.prototype.show = function () {
+        return "Just (" + show (this.unJust) + ")";
     };
-
+    Nothing.prototype.show = function () {
+        return "Nothing";
+    };
 
     //    read :: String -> a
     const read = str => JSON.parse (str);
@@ -389,9 +393,12 @@
     };
 
     // instance Eq a => Eq (Maybe a)
-    Maybe.prototype.eq = function (m) {
-        if (this === Nothing || m === Nothing) return this === m;
-        else return eq (this.fromJust) (m.fromJust);
+    Just.prototype.eq = function (m2) {
+        if (m2 === Nothing) return false;
+        else return eq (this.unJust) (m2.unJust);
+    };
+    Nothing.prototype.eq = function (m2) {
+        return this === m2;
     };
 
 
@@ -435,7 +442,7 @@
         range, isList,
         nub, union,
         toUpper, toLower,
-        Maybe, Just, Nothing, maybe,
+        Maybe, Just, Nothing, isJust, isNothing, maybe,
         show, read, print,
         eq, neq,
         elem,
