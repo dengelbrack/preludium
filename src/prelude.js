@@ -231,10 +231,10 @@
 
     //    ands :: [Boolean] -> Boolean
     //    Haskell and
-    const ands = foldr1 (and);
+    const ands = foldr (and) (true);
     //    ors :: [Boolean] -> Boolean
     //    Haskell or
-    const ors = foldr1 (or);
+    const ors = foldr (or) (false);
 
     //    any :: (a -> Boolean) -> [a] -> Boolean
     const any = p => comp2 (foldr (or) (false)) (map (p));
