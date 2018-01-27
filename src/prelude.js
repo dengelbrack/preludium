@@ -321,6 +321,24 @@
     };
 
 
+    // data Either
+    const Either = function () {};
+    //    Left :: a -> Either a b
+    const Left = ValueConstructor (Either) (function Left (x) { this.unLeft = x; });
+    //    Right :: b -> Either a b
+    const Right = ValueConstructor (Either) (function Right (x) { this.unRight = x; });
+
+    //    isLeft :: Either a b -> Boolean
+    const isLeft = e => e.valueconstructor.name === "Left";
+    //    isRight :: Either a b -> Boolean
+    const isRight = e => e.valueconstructor.name === "Right";
+
+    //    either :: (a -> c) -> (b -> c) -> Either a b -> c
+    const either = f => g => e => {
+        if (isLeft (e)) return f (e.unLeft);
+        else if (isRight (e)) return g (e.unRight);
+    };
+
     // class Show a where
     //    show :: a -> String
     const show = x => x.show ();
@@ -443,6 +461,7 @@
         nub, union,
         toUpper, toLower,
         Maybe, Just, Nothing, isJust, isNothing, maybe,
+        Either, Left, Right, isLeft, isRight, either,
         show, read, print,
         eq, neq,
         elem,
