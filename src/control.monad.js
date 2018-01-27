@@ -1,5 +1,8 @@
 (function () {
-    const { Maybe, Just, Nothing, concatMap, map, foldr } = require ("./prelude");
+    const { Maybe, Just, Nothing,
+        Either, Left, Right,
+        concatMap, map, foldr
+    } = require ("./prelude");
 
 
     // class Functor f where
@@ -14,6 +17,13 @@
         return Nothing;
     };
 
+    // instance Functor Either
+    Left.prototype.fmap = function (f) {
+        return Left (f (this.unLeft));
+    };
+    Right.prototype.fmap = function (f) {
+        return Right (f (this.unRight));
+    };
 
     // instance Functor []
     Array.prototype.fmap = function (f) {
@@ -47,6 +57,20 @@
         return Nothing;
     };
 
+    // instance Monad Either
+    Either.pure = Right;
+    Left.prototype.bind = function (_) {
+        return this;
+    };
+    Right.prototype.bind = function (f) {
+        return f (this.unRight);
+    };
+    Left.prototype.then = function (_) {
+        return this;
+    };
+    Right.prototype.then = function (e2) {
+        return e2;
+    };
 
     // instance Monad []
     Array.pure = x => [x];

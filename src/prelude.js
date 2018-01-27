@@ -371,6 +371,14 @@
         return "Nothing";
     };
 
+    // instance (Show b, Show a) => Show (Either a b)
+    Left.prototype.show = function () {
+        return "Left (" + show (this.unLeft) + ")";
+    };
+    Right.prototype.show = function () {
+        return "Right (" + show (this.unRight) + ")";
+    };
+
     //    read :: String -> a
     const read = str => JSON.parse (str);
 
@@ -419,6 +427,15 @@
         return this === m2;
     };
 
+    // instance (Eq b, Eq a) => Eq (Either a b)
+    Left.prototype.eq = function (e2) {
+        if (isRight (e2)) return false;
+        else return eq (this.unLeft) (e2.unLeft);
+    };
+    Right.prototype.eq = function (e2) {
+        if (isLeft (e2)) return false;
+        else return eq (this.unRight) (e2.unRight);
+    };
 
     //    elem :: a -> [a] -> Boolean
     const elem = comp2 (any) (eq);
