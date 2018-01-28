@@ -4,30 +4,30 @@
     const { Pair, append, show, eq } = require ("./prelude");
     const { ValueConstructor } = require ("./meta.util.js");
 
-    // data Writer
+    // data Writer w a = Writer a w
     const Writer = ValueConstructor (function Writer () {}) (function Writer (x, ss) {
         this.value = x;
         this.writing = ss;
     });
 
-    //    runWriter :: Writer a -> Pair a [String]
+    //    runWriter :: Writer w a -> Pair a w
     const runWriter = w => Pair (w.value) (w.writing);
 
-    //    execWriter :: Writer a -> [String]
+    //    execWriter :: Writer w a -> w
     const execWriter = w => w.writing;
 
-    //    writer :: (a, [String]) -> Writer a
+    //    writer :: (a, w) -> Writer w a
     const writer = (x, ss) => Writer (x) (ss);
 
-    //    tell :: [String] -> Writer ()
+    //    tell :: w -> Writer w ()
     const tell = ss => Writer (null) (ss);
 
-    // instance Functor Writer
+    // instance Functor (Writer w)
     Writer.prototype.fmap = function (f) {
         return writer (f (this.value), this.writing);
     };
 
-    // instance Monad (Writer a)
+    // instance Monad (Writer [String])
     Writer.pure = x => writer (x, [""]);
     Writer.prototype.bind = function (f) {
         const w2 = f (this.value);
@@ -37,12 +37,12 @@
         return writer (w2.value, append (this.writing) (w2.writing));
     };
 
-    // instance Show a => Show (Writer a)
+    // instance (Show a, Show w) => Show (Writer w a)
     Writer.prototype.show = function () {
         return "Writer { " + show (this.value) + ", " + show (this.writing) + " }";
     };
 
-    // instance Eq a => Eq (Writer a)
+    // instance (Eq a, Eq w) => Eq (Writer w a)
     Writer.prototype.eq = function (w2) {
         return eq (this.value) (w2.value) && eq (this.writing) (w2.writing);
     };

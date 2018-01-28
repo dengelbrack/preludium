@@ -289,7 +289,7 @@
     const toLower = str => str.toLowerCase ();
 
 
-    // data Maybe
+    // data Maybe a = Nothing | Just a
     const Maybe = function () {};
     //    Nothing :: Maybe a
     const Nothing = ValueConstructor (Maybe) (function Nothing () {});
@@ -308,7 +308,7 @@
     };
 
 
-    // data Either
+    // data Either a b = Left a | Right b
     const Either = function () {};
     //    Left :: a -> Either a b
     const Left = ValueConstructor (Either) (function Left (x) { this.unLeft = x; });
