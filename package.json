@@ -2,7 +2,7 @@
   "name": "preludejs",
   "version": "0.1.0",
   "description": "Haskell Prelude (and more) for JavaScript",
-  "main": "prelude.js",
+  "main": "src/prelude.js",
   "scripts": {
     "test": "jest"
   },
@@ -12,8 +12,7 @@
     "functional programming"
   ],
   "author": "Martin Eutinger",
-  "license": "ISC",
-  "devDependencies": {
-    "jest": "^20.0.4"
+  "dependencies": {
+    "jest": "^22.1.4"
   }
 }
