@@ -60,13 +60,13 @@
     // instance Monad Either
     Either.pure = Right;
     Left.prototype.bind = function (_) {
-        return this;
+        return Left (this.unLeft);
     };
     Right.prototype.bind = function (f) {
         return f (this.unRight);
     };
     Left.prototype.then = function (_) {
-        return this;
+        return Left (this.unLeft);
     };
     Right.prototype.then = function (e2) {
         return e2;
