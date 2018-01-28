@@ -18,8 +18,8 @@
     };
 
     // instance Functor Either
-    Left.prototype.fmap = function (f) {
-        return Left (f (this.unLeft));
+    Left.prototype.fmap = function (_) {
+        return Left (this.unLeft);
     };
     Right.prototype.fmap = function (f) {
         return Right (f (this.unRight));
