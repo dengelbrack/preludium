@@ -1,6 +1,6 @@
 {
   "name": "preludejs",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Haskell Prelude (and more) for JavaScript",
   "main": "src/prelude.js",
   "scripts": {
