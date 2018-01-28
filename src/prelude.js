@@ -296,11 +296,10 @@
     //    Just :: a -> Maybe a
     const Just = ValueConstructor (Maybe) (function Just (x) { this.unJust = x; });
 
-    //    isJust :: Maybe a -> Boolean
-    const isJust = m => m.valueconstructor.name === "Just";
-
     //    isNothing :: Maybe a -> Boolean
     const isNothing = m => m.valueconstructor.name === "Nothing";
+    //    isJust :: Maybe a -> Boolean
+    const isJust = m => m.valueconstructor.name === "Just";
 
     //    maybe :: b -> (a -> b) -> Maybe a -> b
     const maybe = n => f => m => {
@@ -352,11 +351,11 @@
     };
 
     // instance Show a => Show (Maybe a)
-    Just.prototype.show = function () {
-        return "Just (" + show (this.unJust) + ")";
-    };
     Nothing.prototype.show = function () {
         return "Nothing";
+    };
+    Just.prototype.show = function () {
+        return "Just (" + show (this.unJust) + ")";
     };
 
     // instance (Show b, Show a) => Show (Either a b)
@@ -407,12 +406,12 @@
     };
 
     // instance Eq a => Eq (Maybe a)
+    Nothing.prototype.eq = function (m2) {
+        return this === m2;
+    };
     Just.prototype.eq = function (m2) {
         if (m2 === Nothing) return false;
         else return eq (this.unJust) (m2.unJust);
-    };
-    Nothing.prototype.eq = function (m2) {
-        return this === m2;
     };
 
     // instance (Eq b, Eq a) => Eq (Either a b)
@@ -465,7 +464,7 @@
         range, isList,
         nub, union,
         toUpper, toLower,
-        Maybe, Just, Nothing, isJust, isNothing, maybe,
+        Maybe, Nothing, Just, isNothing, isJust, maybe,
         Either, Left, Right, isLeft, isRight, either,
         show, read, print,
         eq, neq,

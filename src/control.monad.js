@@ -10,11 +10,11 @@
     const fmap = f => m => m.fmap (f);
 
     // instance Functor Maybe
-    Just.prototype.fmap = function (f) {
-        return Just (f (this.unJust));
-    };
     Nothing.prototype.fmap = function (_) {
         return Nothing;
+    };
+    Just.prototype.fmap = function (f) {
+        return Just (f (this.unJust));
     };
 
     // instance Functor Either
@@ -44,17 +44,17 @@
 
     // instance Monad Maybe
     Maybe.pure = Just;
+    Nothing.prototype.bind = function (_) {
+        return Nothing;
+    };
     Just.prototype.bind = function (f) {
         return f (this.unJust);
     };
-    Nothing.prototype.bind = function (_) {
+    Nothing.prototype.then = function (_) {
         return Nothing;
     };
     Just.prototype.then = function (m2) {
         return m2;
-    };
-    Nothing.prototype.then = function (_) {
-        return Nothing;
     };
 
     // instance Monad Either
