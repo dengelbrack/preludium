@@ -323,7 +323,7 @@
     //    either :: (a -> c) -> (b -> c) -> Either a b -> c
     const either = f => g => e => {
         if (isLeft (e)) return f (e.unLeft);
-        else if (isRight (e)) return g (e.unRight);
+        else return g (e.unRight);
     };
 
     // class Show a where
