@@ -31,10 +31,46 @@
     };
 
 
-    // class Functor m => Monad m where
-    //    pure :: m -> a -> m a
-    //    Haskell return
+    // class Functor f => Applicative f where
+    //    pure :: f -> a -> f a
     const pure = t => x => t.pure (x);
+    //    ap :: f (a -> b) -> f a -> f b
+    const ap = a1 => a2 => a1.ap (a2);
+
+    // instance Applicative Maybe
+    Maybe.pure = Just;
+    Nothing.prototype.ap = function (_) {
+        return Nothing;
+    };
+    Just.prototype.ap = function (m2) {
+        return m2.fmap (this.unJust);
+    };
+
+    // instance Applicative Either
+    Either.pure = Right;
+    Left.prototype.ap = function (_) {
+        return Left (this.unLeft);
+    };
+    Right.prototype.ap = function (e2) {
+        return e2.fmap (this.unRight);
+    };
+
+    // instance Applicative Array
+    Array.pure = x => [x];
+    Array.prototype.ap = function (ys) {
+        const thisLength = this.length, ysLength = ys.length;
+        if (thisLength === 0 || ysLength === 0) return [];
+        let apped = new Array (thisLength * ysLength);
+        for (let i = 0; i < thisLength; i++) {
+            for (let j = 0; j < ysLength; j++) {
+                apped [i * thisLength + j] = this [i] (ys [j]);
+            }
+        }
+        return apped;
+    };
+
+
+    // class Applicative m => Monad m where
     //    bind :: (a -> m b) -> m a -> m b
     //    Haskell (>>=)
     const bind = m => f => m.bind (f);
@@ -43,7 +79,6 @@
     const then = m1 => m2 => m1.then (m2);
 
     // instance Monad Maybe
-    Maybe.pure = Just;
     Nothing.prototype.bind = function (_) {
         return Nothing;
     };
@@ -58,7 +93,6 @@
     };
 
     // instance Monad Either
-    Either.pure = Right;
     Left.prototype.bind = function (_) {
         return Left (this.unLeft);
     };
@@ -73,7 +107,6 @@
     };
 
     // instance Monad []
-    Array.pure = x => [x];
     Array.prototype.bind = function (f) {
         return concatMap (f) (this);
     };
@@ -81,9 +114,6 @@
         return this.bind (_ => ys);
     };
 
-
-    //    ap :: Monad m => m (a -> b) -> m a -> m b
-    const ap = mf => m => mf.bind (f => m.bind (x => pure (type (m)) (f (x))));
 
     //    lift :: Monad m => (a -> b) -> m a -> m b
     const liftM = fmap;
@@ -94,11 +124,9 @@
 
     //    compM :: Monad m => m -> (y -> m z, x -> m y, ... a -> m b) -> (a -> m z)
     const compM = t => (...fs) => foldr (compM2) (pure (t)) (fs);
-
     //    compM2 :: Monad m => (b -> m c) -> (a -> m b) -> a -> m c
     //    Haskell (<=<)
     const compM2 = f => g => x => g (x).bind (f);
-
     //    compM3 :: Monad m => (c -> m d) -> (b -> m c) -> (a -> m b) -> a -> m d
     const compM3 = f => g => h => x => h (x).bind (g).bind (f);
 
