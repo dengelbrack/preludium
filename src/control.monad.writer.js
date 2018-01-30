@@ -27,8 +27,13 @@
         return writer (f (this.value), this.writing);
     };
 
-    // instance Monad (Writer [String])
+    // instance Applicative (Writer [String])
     Writer.pure = x => writer (x, [""]);
+    Writer.prototype.ap = function (w2) {
+        return writer (this.value (w2.value), append (this.writing) (w2.writing));
+    };
+
+    // instance Monad (Writer [String])
     Writer.prototype.bind = function (f) {
         const w2 = f (this.value);
         return writer (w2.value, append (this.writing) (w2.writing));
