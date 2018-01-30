@@ -35,8 +35,8 @@
 
     // instance Monad (Writer [String])
     Writer.prototype.bind = function (f) {
-        const w2 = f (this.value);
-        return writer (w2.value, append (this.writing) (w2.writing));
+        const w_ = f (this.value);
+        return writer (w_.value, append (this.writing) (w_.writing));
     };
     Writer.prototype.then = function (w2) {
         return writer (w2.value, append (this.writing) (w2.writing));
