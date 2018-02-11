@@ -1,4 +1,4 @@
-const { isList } = require ("../prelude");
+const { isList } = require ("../preludium");
 
 test("isList array [1,2] to be true", () => {
     expect(isList ([1,2])).toBeTruthy();

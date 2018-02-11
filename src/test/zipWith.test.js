@@ -1,4 +1,4 @@
-const { zipWith } = require ("../prelude");
+const { zipWith } = require ("../preludium");
 
 const add = x => y => x + y;
 

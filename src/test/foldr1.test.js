@@ -1,4 +1,4 @@
-const { foldr1 } = require ("../prelude");
+const { foldr1 } = require ("../preludium");
 
 const add = x => y => x + y;
 const arr = [1,2,3,4,5,6,7,8,9,10];

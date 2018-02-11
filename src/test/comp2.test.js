@@ -1,4 +1,4 @@
-const { comp2 } = require ("../prelude");
+const { comp2 } = require ("../preludium");
 
 const inc = x => x + 1;
 

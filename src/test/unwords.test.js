@@ -1,4 +1,4 @@
-const { unwords } = require ("../prelude");
+const { unwords } = require ("../preludium");
 
 test("join array of words into string", () => {
     expect(unwords (["This", "is", "a", "string."])).toEqual("This is a string.");

@@ -1,4 +1,4 @@
-const { Left, Right, isRight } = require ("../prelude");
+const { Left, Right, isRight } = require ("../preludium");
 
 test("isRight Left (\"foo\")", () => {
     expect(isRight (Left ("foo"))).toBeFalsy();

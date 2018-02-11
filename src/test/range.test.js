@@ -1,4 +1,4 @@
-const { range } = require ("../prelude");
+const { range } = require ("../preludium");
 
 test("range from 2 to 5 to equal [2,3,4,5]", () => {
     expect(range (2) (5)).toEqual([2,3,4,5]);

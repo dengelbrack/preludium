@@ -1,5 +1,5 @@
 const { runWriter, writer } = require ("../control.monad.writer");
-const { Pair } = require ("../prelude");
+const { Pair } = require ("../preludium");
 
 test("runWriter (1, [\"one\"])", () => {
     expect(runWriter (writer (1, ["one"]))).toEqual(Pair (1) (["one"]));

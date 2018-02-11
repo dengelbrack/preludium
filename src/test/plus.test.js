@@ -1,4 +1,4 @@
-const { plus } = require ("../prelude");
+const { plus } = require ("../preludium");
 
 test("plus (1) (1) to be 2", () => {
     expect(plus (1) (1)).toBe(2);

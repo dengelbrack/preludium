@@ -1,4 +1,4 @@
-const { nub } = require ("../prelude");
+const { nub } = require ("../preludium");
 
 test("nub of array [1,2,3,1] to equal [1,2,3]", () => {
     expect(nub ([1,2,3,1])).toEqual([1,2,3]);

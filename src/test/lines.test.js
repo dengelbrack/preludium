@@ -1,4 +1,4 @@
-const { lines } = require ("../prelude");
+const { lines } = require ("../preludium");
 
 test("split string into array of lines", () => {
     expect(lines ("Line1\nLine2")).toEqual(["Line1", "Line2"]);

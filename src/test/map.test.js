@@ -1,4 +1,4 @@
-const { map } = require ("../prelude");
+const { map } = require ("../preludium");
 
 const double = x => 2 * x;
 

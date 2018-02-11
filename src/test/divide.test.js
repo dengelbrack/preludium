@@ -1,4 +1,4 @@
-const { divide } = require ("../prelude");
+const { divide } = require ("../preludium");
 
 test("divide (6) (3) to be .5 [sic]", () => {
     expect(divide (6) (3)).toBe(.5);

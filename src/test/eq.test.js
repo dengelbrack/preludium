@@ -1,4 +1,4 @@
-const { eq, Nothing, Just, Left, Right } = require ("../prelude");
+const { eq, Nothing, Just, Left, Right } = require ("../preludium");
 
 test("eq 1 1", () => {
     expect(eq (1) (1)).toBeTruthy();

@@ -1,4 +1,4 @@
-const { any } = require ("../prelude");
+const { any } = require ("../preludium");
 
 const lt3 = x => x < 3;
 

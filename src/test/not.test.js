@@ -1,4 +1,4 @@
-const { not } = require ("../prelude");
+const { not } = require ("../preludium");
 
 test("not true is false", () => {
     expect(not (true)).toBeFalsy();

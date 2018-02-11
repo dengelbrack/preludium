@@ -1,4 +1,4 @@
-const { tail } = require ("../prelude");
+const { tail } = require ("../preludium");
 
 test("tail of array [1, 2, 3] to equal [2, 3]", () => {
     expect(tail ([1,2,3])).toEqual([2,3]);

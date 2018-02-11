@@ -1,4 +1,4 @@
-const { odd } = require ("../prelude");
+const { odd } = require ("../preludium");
 
 test("1 is odd", () => {
     expect(odd (1)).toBeTruthy();

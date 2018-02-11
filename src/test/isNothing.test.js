@@ -1,4 +1,4 @@
-const { Nothing, Just, isNothing } = require ("../prelude");
+const { Nothing, Just, isNothing } = require ("../preludium");
 
 test("isNothing Nothing", () => {
     expect(isNothing (Nothing)).toBeTruthy();

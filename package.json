@@ -1,8 +1,8 @@
 {
-  "name": "preludejs",
+  "name": "preludium",
   "version": "0.2.0",
   "description": "Haskell Prelude (and more) for JavaScript",
-  "main": "src/prelude.js",
+  "main": "src/preludium.js",
   "scripts": {
     "test": "jest"
   },
@@ -11,7 +11,7 @@
     "prelude",
     "functional programming"
   ],
-  "author": "Martin Eutinger",
+  "author": "Dengelbrack",
   "dependencies": {
     "jest": "^22.1.4"
   }

@@ -1,4 +1,4 @@
-const { flip } = require ("../prelude");
+const { flip } = require ("../preludium");
 
 const minus = x => y => x - y;
 

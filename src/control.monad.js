@@ -2,7 +2,7 @@
     const { Maybe, Just, Nothing,
         Either, Left, Right,
         concatMap, map, foldr
-    } = require ("./prelude");
+    } = require ("./preludium");
 
 
     // class Functor f where

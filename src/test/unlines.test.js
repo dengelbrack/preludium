@@ -1,4 +1,4 @@
-const { unlines } = require ("../prelude");
+const { unlines } = require ("../preludium");
 
 test("join array of lines into string", () => {
     expect(unlines (["Line1", "Line2"])).toEqual("Line1\nLine2");

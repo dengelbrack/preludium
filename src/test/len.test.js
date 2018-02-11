@@ -1,4 +1,4 @@
-const { len } = require ("../prelude");
+const { len } = require ("../preludium");
 
 test("length of array [1,2,3] to be 3", () => {
     expect(len ([1,2,3])).toBe(3);

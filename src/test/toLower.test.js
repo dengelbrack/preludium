@@ -1,4 +1,4 @@
-const { toLower } = require ("../prelude");
+const { toLower } = require ("../preludium");
 
 test("toLower ('A') to equal 'a'", () => {
     expect(toLower ("A")).toBe("a");

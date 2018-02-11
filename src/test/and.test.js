@@ -1,4 +1,4 @@
-const { and } = require ("../prelude");
+const { and } = require ("../preludium");
 
 test("true and true is true", () => {
     expect(and (true) (true)).toBeTruthy();

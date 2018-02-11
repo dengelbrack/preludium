@@ -1,4 +1,4 @@
-const { words } = require ("../prelude");
+const { words } = require ("../preludium");
 
 test("split string into array of words", () => {
     expect(words ("This is a string.")).toEqual(["This", "is", "a", "string."]);

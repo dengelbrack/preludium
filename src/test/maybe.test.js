@@ -1,4 +1,4 @@
-const { Nothing, Just, maybe, odd, show } = require ("../prelude");
+const { Nothing, Just, maybe, odd, show } = require ("../preludium");
 
 test("maybe false odd (Just 3)", () => {
     expect(maybe (false) (odd) (Just (3))).toBeTruthy();

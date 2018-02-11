@@ -1,4 +1,4 @@
-const { times } = require ("../prelude");
+const { times } = require ("../preludium");
 
 test("times (2) (1) to be 2", () => {
     expect(times (2) (1)).toBe(2);

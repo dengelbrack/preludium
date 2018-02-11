@@ -1,4 +1,4 @@
-const { drop } = require ("../prelude");
+const { drop } = require ("../preludium");
 
 const arr = [1,2,3,4,5];
 

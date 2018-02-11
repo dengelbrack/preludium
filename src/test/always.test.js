@@ -1,4 +1,4 @@
-const { always } = require ("../prelude");
+const { always } = require ("../preludium");
 
 test("always (1) (2) to be 1", () => {
     expect(always (1) (2)).toBe(1);

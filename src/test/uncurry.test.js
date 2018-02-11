@@ -1,4 +1,4 @@
-const { uncurry } = require ("../prelude");
+const { uncurry } = require ("../preludium");
 
 const minus = x => y => x - y;
 

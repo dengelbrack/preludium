@@ -1,4 +1,4 @@
-const { read } = require ("../prelude");
+const { read } = require ("../preludium");
 
 test("read \"1\" to be 1", () => {
     expect(read ("1")).toBe(1);

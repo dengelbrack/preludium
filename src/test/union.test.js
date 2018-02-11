@@ -1,4 +1,4 @@
-const { union } = require ("../prelude");
+const { union } = require ("../preludium");
 
 test("union of arrays [1,2,3] and [2,3,4] to equal [1,2,3,4]", () => {
     expect(union ([1,2,3]) ([2,3,4])).toEqual([1,2,3,4]);

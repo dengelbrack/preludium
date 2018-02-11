@@ -1,4 +1,4 @@
-const { elem } = require ("../prelude");
+const { elem } = require ("../preludium");
 
 test("3 to be element of array [1,2,3,4]", () => {
     expect(elem (3) ([1,2,3,4])).toBeTruthy();

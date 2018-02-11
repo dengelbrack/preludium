@@ -1,4 +1,4 @@
-const { last } = require ("../prelude");
+const { last } = require ("../preludium");
 
 test("last of array [1, 2, 3] to be 3", () => {
     expect(last ([1,2,3])).toBe(3);

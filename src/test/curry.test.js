@@ -1,4 +1,4 @@
-const { curry } = require ("../prelude");
+const { curry } = require ("../preludium");
 
 const minus = (x, y) => x - y;
 
