@@ -12,5 +12,8 @@
     "functional programming"
   ],
   "author": "Dengelbrack",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^22.2.2"
+  }
 }
