@@ -1,0 +1,11 @@
+# linters
+.eslintrc*
+
+# tests
+src/test
+
+# misc
+src/alt
+node_modules
+coverage
+
