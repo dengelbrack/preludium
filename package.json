@@ -12,6 +12,10 @@
     "functional programming"
   ],
   "author": "Dengelbrack",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/dengelbrack/preludium.git"
+  },
   "dependencies": {},
   "devDependencies": {
     "jest": "^22.2.2"
