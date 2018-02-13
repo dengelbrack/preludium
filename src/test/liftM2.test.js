@@ -1,5 +1,4 @@
-const { Nothing, Just, Left, Right } = require ("../preludium");
-const { liftM2 } = require ("../control.monad");
+const { Nothing, Just, Left, Right, liftM2 } = require ("../preludium");
 
 const add = x => y => x + y;
 

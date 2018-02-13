@@ -1,5 +1,4 @@
-const { Nothing, Just, Left, Right } = require ("../preludium");
-const { fmap } = require ("../control.monad");
+const { Nothing, Just, Left, Right, fmap } = require ("../preludium");
 
 const double = x => 2 * x;
 

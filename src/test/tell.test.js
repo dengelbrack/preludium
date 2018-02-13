@@ -1,4 +1,4 @@
-const { tell, writer, execWriter } = require ("../control.monad.writer");
+const { tell, writer, execWriter } = require ("../writer");
 
 test("tell [\"one\"]", () => {
     expect(tell (["one"])).toEqual(writer (null, ["one"]));

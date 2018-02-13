@@ -1,5 +1,4 @@
-const { Nothing, Just, Left, Right } = require ("../preludium");
-const { then } = require ("../control.monad");
+const { Nothing, Just, Left, Right, then } = require ("../preludium");
 
 test("then for every item in array", () => {
     expect(then ([1,2,3]) ([2,4]) ).toEqual([2,4,2,4,2,4]);

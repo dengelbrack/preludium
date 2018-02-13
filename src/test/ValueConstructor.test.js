@@ -1,4 +1,4 @@
-const { ValueConstructor } = require ("../meta.util");
+const { ValueConstructor } = require ("../meta");
 
 test("ValueConstructor arity 0", () => {
     const VC = ValueConstructor (function Type () {}) (function Constructor () {});

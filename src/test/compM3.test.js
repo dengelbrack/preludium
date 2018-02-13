@@ -1,5 +1,4 @@
-const { Maybe, Just, Either, Right } = require ("../preludium");
-const { pure, compM3 } = require ("../control.monad");
+const { Maybe, Just, Either, Right, pure, compM3 } = require ("../preludium");
 
 test("compM3 pure pure pure (Array)", () => {
     expect(compM3 (pure (Array)) (pure (Array)) (pure (Array)) (1)).toEqual([1]);

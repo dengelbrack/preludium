@@ -1,5 +1,4 @@
-const { Maybe, Nothing, Just, Either, Left, Right } = require ("../preludium");
-const { type } = require ("../control.monad");
+const { Maybe, Nothing, Just, Either, Left, Right, type } = require ("../preludium");
 
 test("type Array", () => {
     expect(type ([1])).toEqual(Array);

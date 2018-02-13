@@ -1,4 +1,4 @@
-const { runWriter, writer } = require ("../control.monad.writer");
+const { runWriter, writer } = require ("../writer");
 const { Pair } = require ("../preludium");
 
 test("runWriter (1, [\"one\"])", () => {

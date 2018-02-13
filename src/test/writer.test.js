@@ -1,4 +1,4 @@
-const { writer } = require ("../control.monad.writer");
+const { writer } = require ("../writer");
 
 test("writer (1, [\"one\"])", () => {
     expect(writer (1, ["one"])).toEqual({"value": 1, "writing": ["one"]});

@@ -1,5 +1,4 @@
-const { Nothing, Just, Left, Right } = require ("../preludium");
-const { ap } = require ("../control.monad");
+const { Nothing, Just, Left, Right, ap } = require ("../preludium");
 
 const double = x => 2 * x;
 const inc = x => 1 + x;

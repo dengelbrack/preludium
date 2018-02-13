@@ -2,7 +2,7 @@
     "use strict";
 
     const { Pair, append, show, eq } = require ("./preludium");
-    const { ValueConstructor } = require ("./meta.util.js");
+    const { ValueConstructor } = require ("./meta");
 
     // data Writer w a = Writer a w
     const Writer = ValueConstructor (function Writer () {}) (function Writer (x, ss) {
