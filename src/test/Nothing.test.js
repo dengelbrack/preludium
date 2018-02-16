@@ -1,4 +1,4 @@
-const { Nothing } = require ("../preludium");
+const { Nothing } = require ("../index");
 
 test("Nothing", () => {
     expect(Nothing).toEqual(Nothing);

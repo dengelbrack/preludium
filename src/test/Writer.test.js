@@ -1,6 +1,6 @@
 const { Writer } = require ("../control.monad.writer");
 const { fmap, pure, ap, bind, then } = require ("../control.monad");
-const { eq, show } = require ("../preludium");
+const { eq, show } = require ("../index");
 
 const double = x => x * 2;
 

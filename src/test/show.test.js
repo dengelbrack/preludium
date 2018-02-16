@@ -1,4 +1,4 @@
-const { show, Nothing, Just, Left, Right } = require ("../preludium");
+const { show, Nothing, Just, Left, Right } = require ("../index");
 
 test("show 1", () => {
     expect(show (1)).toBe("1");

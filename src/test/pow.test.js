@@ -1,4 +1,4 @@
-const { pow } = require ("../preludium");
+const { pow } = require ("../index");
 
 test("pow (3) (2) to be 8 [sic]", () => {
     expect(pow (3) (2)).toBe(8);

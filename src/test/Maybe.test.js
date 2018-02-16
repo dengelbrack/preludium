@@ -1,4 +1,4 @@
-const { Maybe } = require ("../preludium");
+const { Maybe } = require ("../index");
 
 test("new Maybe ()", () => {
     expect(new Maybe ()).toEqual({});

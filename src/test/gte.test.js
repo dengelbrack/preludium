@@ -1,4 +1,4 @@
-const { gte } = require ("../preludium");
+const { gte } = require ("../index");
 
 test("gte (2) (1) is false [sic]", () => {
     expect(gte (2) (1)).toBeFalsy();

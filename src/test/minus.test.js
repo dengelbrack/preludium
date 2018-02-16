@@ -1,4 +1,4 @@
-const { minus } = require ("../preludium");
+const { minus } = require ("../index");
 
 test("minus (2) (1) to be -1 [sic]", () => {
     expect(minus (2) (1)).toBe(-1);

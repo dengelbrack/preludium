@@ -1,4 +1,4 @@
-const { Maybe, Nothing, Just, Either, Left, Right } = require ("../preludium");
+const { Maybe, Nothing, Just, Either, Left, Right } = require ("../index");
 const { type } = require ("../control.monad");
 
 test("type Array", () => {

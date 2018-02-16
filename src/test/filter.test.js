@@ -1,4 +1,4 @@
-const { filter } = require ("../preludium");
+const { filter } = require ("../index");
 
 const lt3 = x => x < 3;
 

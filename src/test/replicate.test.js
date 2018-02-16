@@ -1,4 +1,4 @@
-const { Just, replicate } = require ("../preludium");
+const { Just, replicate } = require ("../index");
 
 test("replicate 0 1", () => {
     expect(replicate (0) (1)).toEqual([]);

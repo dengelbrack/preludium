@@ -1,4 +1,4 @@
-const { Nothing, Just, lookup } = require ("../preludium");
+const { Nothing, Just, lookup } = require ("../index");
 
 const object = {"prop": "value"};
 

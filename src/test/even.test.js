@@ -1,4 +1,4 @@
-const { even } = require ("../preludium");
+const { even } = require ("../index");
 
 test("2 is even", () => {
     expect(even (2)).toBeTruthy();

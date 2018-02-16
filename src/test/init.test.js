@@ -1,4 +1,4 @@
-const { init } = require ("../preludium");
+const { init } = require ("../index");
 
 test("init of array [1, 2, 3] to equal [2, 3]", () => {
     expect(init ([1,2,3])).toEqual([1,2]);

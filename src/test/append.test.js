@@ -1,4 +1,4 @@
-const { append } = require ("../preludium");
+const { append } = require ("../index");
 
 test("append of arrays [1,2] and [3,4] to equal [1,2,3,4]", () => {
     expect(append ([1,2]) ([3,4])).toEqual([1,2,3,4]);

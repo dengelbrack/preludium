@@ -1,4 +1,4 @@
-const { nil } = require ("../preludium");
+const { nil } = require ("../index");
 
 test("nil of array [] to be true", () => {
     expect(nil ([])).toBeTruthy();

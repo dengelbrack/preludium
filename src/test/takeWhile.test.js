@@ -1,4 +1,4 @@
-const { takeWhile } = require ("../preludium");
+const { takeWhile } = require ("../index");
 
 const lt3 = x => x < 3;
 

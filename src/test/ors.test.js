@@ -1,4 +1,4 @@
-const { ors } = require ("../preludium");
+const { ors } = require ("../index");
 
 test("ors [true, true, true] is true", () => {
     expect(ors ([true, true, true])).toBeTruthy();

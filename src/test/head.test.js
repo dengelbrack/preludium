@@ -1,4 +1,4 @@
-const { head } = require ("../preludium");
+const { head } = require ("../index");
 
 test("head of array [1, 2, 3] to be 1", () => {
     expect(head ([1,2,3])).toBe(1);

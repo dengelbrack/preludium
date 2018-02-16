@@ -1,4 +1,4 @@
-const { Nothing, Just, Left, Right } = require ("../preludium");
+const { Nothing, Just, Left, Right } = require ("../index");
 const { then } = require ("../control.monad");
 
 test("then for every item in array", () => {

@@ -1,4 +1,4 @@
-const { concat } = require ("../preludium");
+const { concat } = require ("../index");
 
 test("concat array of arrays [[1,2], [3,4]] to equal [1,2,3,4]", () => {
     expect(concat ([[1,2],[3,4]])).toEqual([1,2,3,4]);

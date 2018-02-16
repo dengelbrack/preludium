@@ -1,4 +1,4 @@
-const { Maybe, Just, Either, Right } = require ("../preludium");
+const { Maybe, Just, Either, Right } = require ("../index");
 const { pure, compM3 } = require ("../control.monad");
 
 test("compM3 pure pure pure (Array)", () => {

@@ -1,4 +1,4 @@
-const { Left, Right, either, times, len } = require ("../preludium");
+const { Left, Right, either, times, len } = require ("../index");
 
 test("either length (*2) Left (\"foo\")", () => {
     expect(either (len) (times (2)) (Left ("foo"))).toBe(3);

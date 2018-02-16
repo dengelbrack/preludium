@@ -1,4 +1,4 @@
-const { dropWhile } = require ("../preludium");
+const { dropWhile } = require ("../index");
 
 const lt3 = x => x < 3;
 

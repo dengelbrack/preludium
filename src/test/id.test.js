@@ -1,4 +1,4 @@
-const { id } = require ("../preludium");
+const { id } = require ("../index");
 
 test("id (1) to be 1", () => {
     expect(id (1)).toBe(1);

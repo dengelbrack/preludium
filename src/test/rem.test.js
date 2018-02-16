@@ -1,4 +1,4 @@
-const { rem } = require ("../preludium");
+const { rem } = require ("../index");
 
 test("rem 3 10 to be [sic]", () => {
     expect(rem (3) (10)).toBe(1);

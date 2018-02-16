@@ -1,4 +1,4 @@
-const { product } = require ("../preludium");
+const { product } = require ("../index");
 
 const arr = [1,2,3,4,5,6,7,8,9,10];
 
