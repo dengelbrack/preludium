@@ -1,8 +1,11 @@
 (function () {
     "use strict";
 
-    const { Pair, append, show, eq } = require ("./preludium");
-    const { ValueConstructor } = require ("./meta.util.js");
+    const { eq } = require ("./Eq");
+    const { show } = require ("./Show");
+    const { append } = require ("./Array");
+    const { Pair } = require ("./Pair");
+    const { ValueConstructor } = require ("./Meta");
 
     // data Writer w a = Writer a w
     const Writer = ValueConstructor (function Writer () {}) (function Writer (x, ss) {
