@@ -6,6 +6,12 @@ module.exports = {
         "jest": true
     },
     "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true
+        }
+    },
     "rules": {
         "no-console": "off",
         "indent": [
