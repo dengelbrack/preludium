@@ -2,7 +2,7 @@
   "name": "preludium",
   "version": "0.3.1",
   "description": "Haskell Prelude (and more) for JavaScript",
-  "main": "preludium.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "jest"
   },
