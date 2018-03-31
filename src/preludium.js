@@ -243,7 +243,7 @@
 
     //    zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
     const zipWith = f => xs => ys => {
-        const newLength = min (len (xs)) (len (ys));
+        const newLength = min (xs.length) (ys.length);
         let i = 0, zipped = new Array (newLength);
         for (; i < newLength; i++) {
             zipped [i] = f (xs [i]) (ys [i]);
