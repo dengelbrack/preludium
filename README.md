@@ -34,7 +34,7 @@ Just.prototype.fmap = function (f) {
 ```
 Using fmap for Maybe:
 ```javascript
-print (fmap (x => 2 * x) (Just (21)));  // Just (42)
+fmap (x => 2 * x) (Just (21));  // => Just (42)
 ```
 
 ## Example usage
@@ -47,11 +47,8 @@ const safeDivision = x => y => {
     else return Just (x / y);
 };
 
-const value = safeDivision (84) (4);
-const noValue = safeDivision (10) (0);
-
-print (value);      // Just (21)
-print (noValue);    // Nothing
+const value = safeDivision (84) (4); // => Just (21)
+const noValue = safeDivision (10) (0); // => Nothing
 ```
 
 The liftM2 function takes a normal function, such as plus, and "lifts" it to work on Monads.
@@ -62,12 +59,12 @@ const { plus, liftM2 } = require ("preludium");
 //    plusM :: Monad m => m Number -> m Number -> m Number
 const plusM = liftM2 (plus);
 
-print (plusM (value) (value));      // Just (42)
-print (plusM (value) (noValue));    // Nothing
+plusM (value) (value);      // => Just (42)
+plusM (value) (noValue);    // => Nothing
 ```
 
 The function plusM works on all Monads, not just Maybe:
 ```javascript
-print (plusM ([1,2,3]) ([10,100])); // [11, 101, 12, 102, 13, 103]
+plusM ([1,2,3]) ([10,100]); // => [11, 101, 12, 102, 13, 103]
 ```
 
