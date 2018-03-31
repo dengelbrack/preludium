@@ -8,6 +8,10 @@ test("show \"1\"", () => {
     expect(show ("1")).toBe("\"1\"");
 });
 
+test("show []", () => {
+    expect(show ([])).toBe("[]");
+});
+
 test("show [1]", () => {
     expect(show ([1])).toBe("[1]");
 });
