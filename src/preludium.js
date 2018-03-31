@@ -347,7 +347,8 @@
 
     // instance Show a => Show [a]
     Array.prototype.show = function () {
-        return "[" + show (head (this)) + foldr (item => acc => ", " + show (item) + acc) ("") (tail (this)) + "]";
+        if (this.length < 1) return "[]";
+        else return "[" + show (head (this)) + foldr (item => acc => ", " + show (item) + acc) ("") (tail (this)) + "]";
     };
 
     // instance Show a => Show (Maybe a)
