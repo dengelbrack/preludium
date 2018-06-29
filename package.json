@@ -11,6 +11,7 @@
     "prelude",
     "functional programming"
   ],
+  "license": "AGPL-3.0-only",
   "author": "Dengelbrack",
   "repository": {
     "type": "git",
